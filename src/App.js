@@ -1,23 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import AppNav from "./components/AppNav/AppNav";
+import House from "./components/House/House";
 
 function App() {
+  const [floors, setFloors] = useState([
+    "floor",
+    "floor",
+    "floor",
+    "floor",
+    "floor",
+  ]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <AppNav />
+      <House floors={floors} />
     </div>
   );
 }

@@ -1,0 +1,11 @@
+.house-floor {
+  box-sizing: border-box;
+  width: 1000px;
+  height: 200px;
+  margin: 4px;
+  border: solid 2px black;
+}
+
+.house-floor:hover {
+  border: 4px solid black;
+}
