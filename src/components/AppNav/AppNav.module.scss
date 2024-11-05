@@ -6,9 +6,10 @@
   list-style: none;
   gap: 50px;
   cursor: pointer;
-  // li {
-  //   color: red;
-  // }
+  a {
+    color: red;
+    text-decoration: none;
+  }
 }
 .nav {
   display: block;
