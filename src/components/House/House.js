@@ -1,5 +1,5 @@
 import AppNav from "../AppNav/AppNav";
-import HouseFloor from "../HouseFloor/HouseFloor";
+import HouseFloor from "./HouseFloor/HouseFloor.js";
 import styles from "./House.module.scss";
 
 function House({ floors }) {
