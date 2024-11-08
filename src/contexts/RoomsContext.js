@@ -82,6 +82,30 @@ function reducer(state, action) {
         ...state,
         currentRoom: state.rooms.find((room) => room.id === action.payload),
       };
+    case "sensor/deactivate":
+      return {
+        ...state,
+        rooms: state.rooms.map((room) =>
+          room.id === state.currentRoom.id
+            ? {
+                ...room,
+                sensors: room.sensors.map((sensor) =>
+                  sensor.id === action.payload
+                    ? { ...sensor, status: "inactive" }
+                    : sensor
+                ),
+              }
+            : room
+        ),
+        currentRoom: {
+          ...state.currentRoom,
+          sensors: state.currentRoom.sensors.map((sensor) =>
+            sensor.id === action.payload
+              ? { ...sensor, status: "inactive" }
+              : sensor
+          ),
+        },
+      };
     default:
       throw new Error("Unknown action type");
   }
