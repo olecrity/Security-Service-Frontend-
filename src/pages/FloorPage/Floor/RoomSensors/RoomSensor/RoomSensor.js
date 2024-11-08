@@ -1,9 +1,11 @@
+import styles from "./RoomSensor.module.scss";
+
 function RoomSensor({ sensor }) {
   return (
-    <div>
-      <label>ID: {sensor.id} </label>
-      <label>{sensor.type} </label>
-      <label>{sensor.status} </label>
+    <div className={styles["sensor-container"]}>
+      <p>ID: {sensor.id} </p>
+      <p>{sensor.type} </p>
+      <p>{sensor.status} </p>
       <button>Deactivate</button>
     </div>
   );
