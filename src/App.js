@@ -15,12 +15,6 @@ function App() {
     "floor",
     "floor",
   ]);
-  // return (
-  //   <div className="app">
-  //     <AppNav />
-  //     <House floors={floors} />
-  //   </div>
-  // );
   return (
     <BrowserRouter>
       <AppNav></AppNav>
@@ -33,7 +27,5 @@ function App() {
     </BrowserRouter>
   );
 }
-
-//я переглянув і закомітив, напиши мені в тг пліз
 
 export default App;
