@@ -28,7 +28,13 @@ function Room({ room, subdivisionSize, roomId }) {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       id={roomId}
-      className={styles.room}
+      className={`${styles.room} ${
+        room.sensors.reduce((acc, cur) =>
+          cur.status === "active" ? true : false
+        )
+          ? styles.alarm
+          : ""
+      }`}
     ></div>
   );
 }
