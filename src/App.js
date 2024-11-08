@@ -1,10 +1,9 @@
 import { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import AppNav from "./components/AppNav/AppNav";
 import House from "./components/House/House";
-import Floor from "./components/Floor/Floor";
-import Homepage from "./components/Homepage/Homepage";
+import Homepage from "./pages/Homepage/Homepage";
+import FloorPage from "./pages/FloorPage/FloorPage";
 
 function App() {
   const [floors, setFloors] = useState([
@@ -25,7 +24,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="house" element={<House floors={floors} />} />
-        <Route path="floor" element={<Floor />} />
+        <Route path="floor" element={<FloorPage />} />
       </Routes>
     </BrowserRouter>
   );

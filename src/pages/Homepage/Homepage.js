@@ -1,4 +1,4 @@
-import AppNav from "../AppNav/AppNav";
+import AppNav from "../../components/AppNav/AppNav";
 
 function Homepage() {
   return (
