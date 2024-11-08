@@ -1,0 +1,29 @@
+import { useEffect } from "react";
+import Room from "./Room/Room";
+
+function FloorSubdivision({ rooms, id, floorHeight }) {
+  const size = rooms.reduce((acc, cur) => acc + cur.area, 0);
+  console.log(size);
+
+  useEffect(
+    function () {
+      const subdivision = document.getElementById(`${id}`);
+      subdivision.style.width = `${size}%`;
+    },
+    [size, id]
+  );
+  return (
+    <div id={id}>
+      {rooms.map((room) => (
+        <Room
+          room={room}
+          subdivisionSize={size}
+          key={room.id}
+          roomId={room.id}
+        />
+      ))}
+    </div>
+  );
+}
+
+export default FloorSubdivision;
