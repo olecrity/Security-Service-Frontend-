@@ -4,6 +4,9 @@ import styles from "./AppNav.module.scss";
 function AppNav() {
   return (
     <nav className={styles.nav}>
+       <a className={styles.logo_section_1} > 
+          <img className={styles.logo_img} src="../../logo123.png" alt=""/>
+       </a>
       <ul className={styles.main}>
         <li>
           <NavLink to="/">Start page</NavLink>
