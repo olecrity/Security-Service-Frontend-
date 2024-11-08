@@ -1,8 +1,10 @@
 import { useEffect } from "react";
 import styles from "./Room.module.scss";
+import { useRooms } from "../../../../../../contexts/RoomsContext";
 
 function Room({ room, subdivisionSize, roomId }) {
   const roomHeight = (room.area / subdivisionSize) * 100;
+  const { dispatch, currentRoom } = useRooms();
 
   useEffect(function () {
     const room = document.getElementById(`${roomId}`);
@@ -11,16 +13,18 @@ function Room({ room, subdivisionSize, roomId }) {
   }, []);
 
   function handleMouseEnter(e) {
-    console.log(e);
     e.target.style.border = "5px solid black";
   }
 
   function handleMouseLeave(e) {
-    console.log(e);
     e.target.style.border = "2px solid black";
+  }
+  function handleClick() {
+    dispatch({ type: "roomSensors/shown", payload: roomId });
   }
   return (
     <div
+      onClick={handleClick}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       id={roomId}

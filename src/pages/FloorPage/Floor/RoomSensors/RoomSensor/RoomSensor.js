@@ -1,9 +1,9 @@
-function RoomSensor() {
+function RoomSensor({ sensor }) {
   return (
     <div>
-      <label>ID: </label>
-      <label>Type of sensor: </label>
-      <label>Status: </label>
+      <label>ID: {sensor.id} </label>
+      <label>{sensor.type} </label>
+      <label>{sensor.status} </label>
       <button>Deactivate</button>
     </div>
   );

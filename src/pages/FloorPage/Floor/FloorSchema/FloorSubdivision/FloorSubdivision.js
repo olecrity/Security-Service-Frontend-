@@ -3,7 +3,6 @@ import Room from "./Room/Room";
 
 function FloorSubdivision({ rooms, id, floorHeight }) {
   const size = rooms.reduce((acc, cur) => acc + cur.area, 0);
-  console.log(size);
 
   useEffect(
     function () {
