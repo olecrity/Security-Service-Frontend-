@@ -5,6 +5,7 @@ import AppNav from "./components/AppNav/AppNav";
 import House from "./components/House/House";
 import Floor from "./components/Floor/Floor";
 import Homepage from "./components/Homepage/Homepage";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   const [floors, setFloors] = useState([
@@ -22,11 +23,13 @@ function App() {
   // );
   return (
     <BrowserRouter>
+      <AppNav></AppNav>
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="house" element={<House floors={floors} />} />
         <Route path="floor" element={<Floor />} />
       </Routes>
+      <Footer></Footer>
     </BrowserRouter>
   );
 }
