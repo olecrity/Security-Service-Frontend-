@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import styles from "./AppNav.module.scss";
 
+
 function AppNav() {
   return (
     <nav className={styles.nav}>
@@ -9,13 +10,13 @@ function AppNav() {
        </a>
       <ul className={styles.main}>
         <li>
-          <NavLink to="/">Start page</NavLink>
+          <NavLink className={styles.pages} to="/" className={({ isActive }) => isActive ? `${styles.pages} ${styles.active}` : styles.pages}>Start page</NavLink>
         </li>
         <li>
-          <NavLink to="/house">Building</NavLink>
+          <NavLink className={styles.pages} to="/house" className={({ isActive }) => isActive ? `${styles.pages} ${styles.active}` : styles.pages}>Building</NavLink>
         </li>
         <li>
-          <NavLink to="/floor">Floor</NavLink>
+          <NavLink className={styles.pages} to="/floor" className={({ isActive }) => isActive ? `${styles.pages} ${styles.active}` : styles.pages}>Floor</NavLink>
         </li>
       </ul>
     </nav>
