@@ -1,11 +1,58 @@
-$color_1: rgb(2, 230, 255);
+$color_1: rgb(0, 193, 214);
 $color_2: rgb(0, 0, 0);
 $color_3: rgb(195, 0, 255);
-$color_4: rgb(0, 25, 165);
+$color_4: rgb(255, 255, 255);
 $color_5: rgb(0, 81, 255);
 
 %font1{
     font-family: "Archivo", sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
+}
+
+%button1{
+    width: 124px;
+    height: 45px;
+    color: $color_4;
+    background: $color_1;
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.164);
+    border: none;
+    border-radius: 5px;
+    font-family: 'Inter', sans-serif;
+    font-style: light;
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 19px;
+    margin: 20px 12px 20px 12px;
+    transition: 0.5s;
+}
+
+%button1:hover{
+    transition: 0.5s;
+    width: 134px;
+    height: 50px;
+    font-size: 19px;
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.411);
+}
+
+%button2{
+    width: 104px;
+    height: 40px;
+    font-size: 14px;
+    color: $color_4;
+    background: $color_1;
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.164);
+    border: none;
+    border-radius: 5px;
+    font-family: 'Inter', sans-serif;
+    font-style: light;
+    font-weight: 500;
+    line-height: 19px;
+    margin: 0;
+    transition: 0.5s;
+}
+
+%button2:hover{
+    transition: 0.5s;
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.411);
 }
