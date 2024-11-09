@@ -217,17 +217,19 @@ form {
     }
 
     .button_section2{
-        height: 240px;
+        min-height: 180px;
         display: flex;
         flex-wrap: wrap;
         flex-direction: row;
         justify-content: center;
-        align-self: flex-end;
+        align-items: flex-end;
+        align-self: center;
     }
     .button_section3{
-        height: 130px;
+        //height: 130px;
         display: flex;
         justify-content: center;
+        align-items: flex-end;
         align-self: flex-end;
         .main_title_btn2{
             display: flex;
@@ -246,6 +248,7 @@ form {
         }
     }
     .main_title_btn2{
+        position: relative;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -253,6 +256,19 @@ form {
         @extend %button1; 
         width: 144px;
         height: 55px; 
+        margin: 0 10px 20px;
+    }
+
+    @media (min-width: 700px) {
+        .main_title_btn2 {
+            margin: 0 calc(3vw) 20px;
+        }
+    }
+    
+    @media (min-width: 1400px) {
+        .main_title_btn2 {
+            margin: 0 calc(7vw) 20px calc(7vw);
+        }
     }
 
     .main_title_btn2:hover{ 

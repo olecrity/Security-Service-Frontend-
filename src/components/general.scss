@@ -1,13 +1,24 @@
-$color_1: rgb(0, 193, 214);
-$color_2: rgb(0, 0, 0);
-$color_3: rgb(195, 0, 255);
+$color_1: #00c1d6;
+$color_2: #000000;
+$color_3: #c300ff;
 $color_4: rgb(255, 255, 255);
 $color_5: rgb(0, 81, 255);
+$color_6: rgba(255, 0, 0, 0.37);
+$color_sensor_1: rgb(197, 95, 0);
+$color_sensor_2: rgb(218, 214, 0);
+$color_sensor_3: rgb(40, 199, 0);
+$color_sensor_4: rgb(99, 0, 54);
 
 %font1{
     font-family: "Archivo", sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
+}
+
+@keyframes gradient {
+    50% {
+      transform: translate(-300vw, -300vh);
+    }
 }
 
 %button1{
@@ -24,15 +35,18 @@ $color_5: rgb(0, 81, 255);
     font-size: 17px;
     line-height: 19px;
     margin: 20px 12px 20px 12px;
-    transition: 0.5s;
+    transition: all 0.5s ease-out;
+    //animation: gradient 15s ease infinite;
 }
 
 %button1:hover{
-    transition: 0.5s;
+    background: linear-gradient(90deg, rgba(0,193,214,1) 0%, rgba(195,0,255,1) 93%);
+    transition: all 0.5s ease-out;
     width: 134px;
     height: 50px;
     font-size: 19px;
     box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.411);
+    //animation: gradient 15s ease infinite;
 }
 
 %button2{
