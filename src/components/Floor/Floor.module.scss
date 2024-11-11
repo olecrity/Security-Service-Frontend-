@@ -1,7 +1,10 @@
+@import "../general.scss";
 .floor-page {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   align-items: start;
   width: 90%;
+  gap: 20px;
+  @extend %font1;
 }

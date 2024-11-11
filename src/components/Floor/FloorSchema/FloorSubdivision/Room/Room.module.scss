@@ -1,6 +1,12 @@
+@import "../../../../general.scss";
+
 .room {
   box-sizing: border-box;
-  border: black solid 1px;
+  border: $color_5 solid 1px;
+  background-color: $color_4;
+}
+.room:hover {
+  background-color: #dadada;
 }
 .alarm {
   animation-name: active-sensor;
@@ -9,12 +15,12 @@
 }
 @keyframes active-sensor {
   0% {
-    border: black solid 1px;
+    border: $color_5 solid 1px;
   }
   50% {
     border: red solid 5px;
   }
   100% {
-    border: black solid 1px;
+    border: $color_5 solid 1px;
   }
 }

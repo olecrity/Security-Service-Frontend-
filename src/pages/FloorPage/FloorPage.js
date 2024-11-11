@@ -1,5 +1,5 @@
 import { RoomsProvider } from "../../contexts/RoomsContext";
-import Floor from "./Floor/Floor";
+import Floor from "../../components/Floor/Floor";
 
 function FloorPage() {
   return (

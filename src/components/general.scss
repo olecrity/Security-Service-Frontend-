@@ -9,64 +9,68 @@ $color_sensor_2: rgb(218, 214, 0);
 $color_sensor_3: rgb(40, 199, 0);
 $color_sensor_4: rgb(99, 0, 54);
 
-%font1{
-    font-family: "Archivo", sans-serif;
-    font-optical-sizing: auto;
-    font-style: normal;
+%font1 {
+  font-family: "Archivo", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
 }
 
 @keyframes gradient {
-    50% {
-      transform: translate(-300vw, -300vh);
-    }
+  50% {
+    transform: translate(-300vw, -300vh);
+  }
 }
 
-%button1{
-    width: 124px;
-    height: 45px;
-    color: $color_4;
-    background: $color_1;
-    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.164);
-    border: none;
-    border-radius: 5px;
-    font-family: 'Inter', sans-serif;
-    font-style: light;
-    font-weight: 500;
-    font-size: 17px;
-    line-height: 19px;
-    margin: 20px 12px 20px 12px;
-    transition: all 0.5s ease-out;
-    //animation: gradient 15s ease infinite;
+%button1 {
+  width: 124px;
+  height: 45px;
+  color: $color_4;
+  background: $color_1;
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.164);
+  border: none;
+  border-radius: 5px;
+  font-family: "Inter", sans-serif;
+  font-style: light;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 19px;
+  margin: 20px 12px 20px 12px;
+  transition: all 0.5s ease-out;
+  //animation: gradient 15s ease infinite;
 }
 
-%button1:hover{
-    background: linear-gradient(90deg, rgba(0,193,214,1) 0%, rgba(195,0,255,1) 93%);
-    transition: all 0.5s ease-out;
-    width: 134px;
-    height: 50px;
-    font-size: 19px;
-    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.411);
-    //animation: gradient 15s ease infinite;
+%button1:hover {
+  background: linear-gradient(
+    90deg,
+    rgba(0, 193, 214, 1) 0%,
+    rgba(195, 0, 255, 1) 93%
+  );
+  transition: all 0.5s ease-out;
+  width: 134px;
+  height: 50px;
+  font-size: 19px;
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.411);
+  //animation: gradient 15s ease infinite;
 }
 
-%button2{
-    width: 104px;
-    height: 40px;
-    font-size: 14px;
-    color: $color_4;
-    background: $color_1;
-    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.164);
-    border: none;
-    border-radius: 5px;
-    font-family: 'Inter', sans-serif;
-    font-style: light;
-    font-weight: 500;
-    line-height: 19px;
-    margin: 0;
-    transition: 0.5s;
+%button2 {
+  width: 104px;
+  height: 40px;
+  font-size: 14px;
+  color: $color_4;
+  background: $color_1;
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.164);
+  border: none;
+  border-radius: 5px;
+  font-family: "Inter", sans-serif;
+  font-style: light;
+  font-weight: 500;
+  line-height: 19px;
+  margin: 0;
+  transition: 0.5s;
 }
 
-%button2:hover{
-    transition: 0.5s;
-    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.411);
+%button2:hover {
+  transition: 0.5s;
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.411);
 }
