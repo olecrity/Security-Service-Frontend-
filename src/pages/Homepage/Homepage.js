@@ -27,7 +27,7 @@ function Homepage() {
           </a>
         </button>
       </div>
-      <dialog id={styles.form_block_active}>
+      <dialog id={styles.form_block}>
         {" "}
         {/* зміни айді на form_block_active для показу форми  */}
         <div className={styles.dialog_header}>
