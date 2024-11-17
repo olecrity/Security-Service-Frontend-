@@ -1,0 +1,96 @@
+@import '../../general.scss';
+
+
+.main_caption{
+    margin: 20px 0 20px 20px;
+    @extend %font1;
+}
+
+.create_table {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    box-sizing: border-box;
+    border: 0px ;
+    border-radius: 5px;
+    width: 47vw;
+    height: 300px;
+    box-shadow: 4px 8px 30px 3px rgba(0, 0, 0, 0.164);
+    background-color: $color_1;
+
+    .table_section{
+      padding: 18px 0;
+      margin-left: 5px;
+      width: 60%;
+      #floors_table{
+        display: block;
+        white-space: nowrap;
+        border-collapse: collapse;
+        border: 2px solid rgb(140, 140, 140);
+        background-color: $color_4;
+
+        tr{
+          width: 100%;
+
+          th{
+            border: 1px solid rgb(140, 140, 140);
+            padding: 5px 20px;
+            @extend %font1;
+            width: 100%;
+            font-size: 14px;
+            text-align: center;
+            align-content: center;
+          }
+        }
+      }
+    }
+
+    .buttons_section{
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+      align-items: center;
+      padding: 8px 0;
+
+      .main_title_btn{
+        @extend %button2;
+        width: 130px;
+        font-size: 14px;
+        margin: 10px 8px 6px;
+        background: linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 93%);
+        a{
+          background-color: white;
+        }
+        p{
+          margin: 0;
+          color: $color_2;
+          transition: all 0.3s ease-out;
+        }
+      }
+
+      .main_title_btn:hover{
+        width: 134px;
+        height: 45px;
+        margin: 6px 6px 5px;
+        font-size: 16px;
+        p{
+          font-size: 16px;
+          transition: all 0.5s ease-out;
+        }
+      }
+
+      #submit_struct_btn{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 50px;
+        margin-bottom: 15px;
+       
+      }
+
+      #submit_struct_btn:hover{
+        width: 140px;
+        margin: 46px 0 0 0;
+      }
+    }
+  }

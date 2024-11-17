@@ -1,11 +1,11 @@
 import styles from "./Dialog.module.scss";
 
-function Dialog() {
+function Dialog({ mode, onClose }) {
     return ( 
-        <dialog id={styles.form_block_active}>  {/* зміни айді на form_block_active для показу форми  */}
+        <dialog id={styles.form_block_active} open>  {/* зміни айді на form_block_active для показу форми  */}
             <div className={styles.dialog_header}>
-            <h3 id={styles.dialog_header_text}>Log in</h3>
-            <button className={styles.close_modal}> {/*кнопка для виходу з форми*/}
+            <h3 id={styles.dialog_header_text}>{mode === "login" ? "Log in" : "Sign up"}</h3>
+            <button className={styles.close_modal} onClick={onClose}> {/*кнопка для виходу з форми*/}
                 <i className="fa-solid fa-xmark close_form  close_img"></i>
             </button>
             </div>
@@ -25,7 +25,7 @@ function Dialog() {
 
             <div className={styles.dialog_submit}>
                 <button id={styles.submitData}>Submit</button>
-                <button id={styles.cancel_submit} formnovalidate="formnovalidate">Cancel</button>
+                <button id={styles.cancel_submit} onClick={onClose} formnovalidate="formnovalidate">Cancel</button>
             </div>
             </form>
         </dialog>

@@ -18,7 +18,7 @@ function Footer() {
             <div className={styles.footer_section}>
                 <h3>Usage</h3>
                 <p className={styles.part3_footer}><a className={styles.navigation} >Documentation</a></p>
-                <p className={styles.part3_footer}><a className={styles.navigation} >Privacy Policy</a></p>
+                <p className={styles.part3_footer}><a className={styles.navigation} >Guidance of usage</a></p>
             </div>
             <div className={styles.footer_section}>
                 <div className={styles.contact_link_section}>

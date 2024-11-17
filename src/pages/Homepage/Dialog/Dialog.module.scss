@@ -13,6 +13,10 @@
 }
 
 #form_block_active {  
+    display: flex;
+    position: fixed;
+    top: 30%;
+    justify-self: center;
     width: 240px; 
     z-index: 10;
     display: block;
@@ -68,11 +72,11 @@ form {
         background-color: #ffffff;
         z-index: -1;
     }
-    .namelabel{
-        top: 75px;
+    .namelabel{  //captions placement
+        top: 71px;
     }
     .passwordlabel{
-        top: 169px;
+        top: 153px;
     }
 }
 
@@ -84,6 +88,7 @@ form {
     h3{
         margin: 8px 0;
     }
+    margin-bottom: 10px;
 }
 
 .dialog_submit{
@@ -100,7 +105,7 @@ form {
     line-height: 20px;
     border: 1.5px solid #9b9a9a;
     border-radius: 4px;
-    margin: 33px 0 0 0;
+    margin: 20px 0 0 0;
     outline: none;
 }
 
