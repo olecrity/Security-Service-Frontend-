@@ -30,17 +30,17 @@ function House({ floors }) {
             <div className={styles.buttons_section}>
               <button className={styles.main_title_btn}>
                   <a className={styles.navigation}>
-                      <p>Add T1 foor</p>
+                      <p className={styles.main_btn_text}>Add T1 foor</p>
                   </a>
               </button>
               <button className={styles.main_title_btn}>
                   <a className={styles.navigation}>
-                      <p>Add T2 foor</p>
+                      <p className={styles.main_btn_text}>Add T2 foor</p>
                   </a>
               </button>
               <button id={styles.submit_struct_btn} className={styles.main_title_btn}>
                   <a className={styles.navigation}>
-                      <p>Submit structure</p>
+                      <p className={styles.main_btn_text}>Submit structure</p>
                   </a>
               </button>
             </div>
@@ -50,22 +50,22 @@ function House({ floors }) {
             <div className={styles.button_section2}>
               <button className={styles.main_title_btn2}>
                 <a className={styles.navigation}>
-                    <p>Start simulation</p>
+                    <p className={styles.main_btn_text}>Start simulation</p>
                 </a>
               </button>
               <button className={styles.main_title_btn2}>
                   <a className={styles.navigation}>
-                      <p>Stop simulation</p>
+                      <p className={styles.main_btn_text}>Stop simulation</p>
                   </a>
               </button>
               <button className={styles.main_title_btn2}>
                 <a className={styles.navigation}>
-                    <p>Resume simulation</p>
+                    <p className={styles.main_btn_text}>Resume simulation</p>
                 </a>
               </button>
               <button className={styles.main_title_btn2}>
                   <a className={styles.navigation}>
-                      <p>Save information</p>
+                      <p className={styles.main_btn_text}>Save information</p>
                   </a>
               </button>
             </div>

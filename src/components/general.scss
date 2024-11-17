@@ -15,38 +15,62 @@ $color_sensor_4: rgb(99, 0, 54);
     font-style: normal;
 }
 
-@keyframes gradient {
-    50% {
-      transform: translate(-300vw, -300vh);
-    }
+%text1{
+    transition: 0.3s;
+}
+
+%text1:hover{
+    transition: 0.3s;
 }
 
 %button1{
     width: 124px;
     height: 45px;
+    padding: 0;
     color: $color_4;
-    background: $color_1;
+    background: linear-gradient(90deg, rgba(0,193,214,1) 0%, rgba(195,0,255,1) 93%);
     box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.164);
     border: none;
     border-radius: 5px;
-    font-family: 'Inter', sans-serif;
-    font-style: light;
-    font-weight: 500;
-    font-size: 17px;
-    line-height: 19px;
     margin: 20px 12px 20px 12px;
-    transition: all 0.5s ease-out;
-    //animation: gradient 15s ease infinite;
+    transition: 0.5s;
+    a{
+        background-color: rgba(0,193,214,1);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        border-radius: 5px;
+        background: $color_1;
+        text-align: center;
+        overflow: hidden;
+        transition: 0.5s;
+        p{
+            font-family: 'Inter', sans-serif;
+            font-style: light;
+            font-weight: 500;
+            line-height: 19px;
+            font-size: 17px;
+            transition: 0.4s;
+        }
+    }
 }
 
 %button1:hover{
-    background: linear-gradient(90deg, rgba(0,193,214,1) 0%, rgba(195,0,255,1) 93%);
-    transition: all 0.5s ease-out;
+    transition: 0.5s;
     width: 134px;
     height: 50px;
-    font-size: 19px;
     box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.411);
     //animation: gradient 15s ease infinite;
+    a{
+        background-color: rgba(0,193,214,0);
+        transition: 0.5s;
+        p{
+            font-size: 19px;
+            transition: 0.4s;
+        }
+    }
 }
 
 %button2{
@@ -54,7 +78,7 @@ $color_sensor_4: rgb(99, 0, 54);
     height: 40px;
     font-size: 14px;
     color: $color_4;
-    background: $color_1;
+    background: linear-gradient(90deg, rgba(0,193,214,1) 0%, rgba(195,0,255,1) 93%);
     box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.164);
     border: none;
     border-radius: 5px;
@@ -64,9 +88,26 @@ $color_sensor_4: rgb(99, 0, 54);
     line-height: 19px;
     margin: 0;
     transition: 0.5s;
+    a{
+        background-color: rgba(0,193,214,1);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        border-radius: 5px;
+        background: $color_1;
+        text-align: center;
+        overflow: hidden;
+        transition: 0.5s;
+    }
 }
 
 %button2:hover{
     transition: 0.5s;
     box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.411);
+    a{
+        background-color: rgba(0,193,214,0);
+        transition: 0.5s;
+    }
 }

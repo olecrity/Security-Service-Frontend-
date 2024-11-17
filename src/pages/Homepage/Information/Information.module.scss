@@ -1,0 +1,13 @@
+@import '../../../components/general.scss';
+
+.second_section_documantation{
+    width: 46vw;
+    h3{
+        padding-left: 12px;
+    }
+    textarea{
+        width: 95%;
+        min-height: 400px;
+        margin-left: 12px;
+    }
+}
