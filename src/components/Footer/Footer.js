@@ -1,4 +1,5 @@
 import styles from "./Footer.module.scss";
+import { NavLink } from "react-router-dom";
 
 function Footer() {
   return (
@@ -12,18 +13,17 @@ function Footer() {
             </div>
             <div className={styles.footer_section}>
                 <h3>System</h3>
-                <p className={styles.part3_footer} ><a className={styles.navigation} >Terms of Service</a></p>
-                <p className={styles.part3_footer}><a className={styles.navigation} >Privacy Policy</a></p>
+                <p className={styles.part3_footer} ><NavLink to="####" className={styles.navigation} >Terms of Service</NavLink></p>
+                <p className={styles.part3_footer}><NavLink to="documentation" className={styles.navigation} >Documentation</NavLink></p>
             </div>
             <div className={styles.footer_section}>
                 <h3>Usage</h3>
-                <p className={styles.part3_footer}><a className={styles.navigation} >Documentation</a></p>
-                <p className={styles.part3_footer}><a className={styles.navigation} >Guidance of usage</a></p>
+                <p className={styles.part3_footer}><NavLink to="guidance" className={styles.navigation} >Guidance of usage</NavLink></p>
             </div>
             <div className={styles.footer_section}>
                 <div className={styles.contact_link_section}>
                 <h3>Links</h3>
-                <p className={styles.part3_footer}><a className={styles.navigation} >Github</a></p>
+                <p className={styles.part3_footer}><NavLink to="git" className={styles.navigation} >Github</NavLink></p>
                 </div>
             </div>
         </div>
