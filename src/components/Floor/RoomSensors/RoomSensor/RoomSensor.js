@@ -1,4 +1,4 @@
-import { useRooms } from "../../../../../contexts/RoomsContext";
+import { useRooms } from "../../../../contexts/RoomsContext";
 import styles from "./RoomSensor.module.scss";
 
 function RoomSensor({ sensor }) {
@@ -12,7 +12,12 @@ function RoomSensor({ sensor }) {
       <p>ID: {sensor.id} </p>
       <p>{sensor.type} </p>
       <p>{sensor.status} </p>
-      <button onClick={handleOnDeactivateSensor}>Deactivate</button>
+      <button
+        className={styles["btn-deactivate"]}
+        onClick={handleOnDeactivateSensor}
+      >
+        Deactivate
+      </button>
     </div>
   );
 }

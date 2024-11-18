@@ -1,0 +1,13 @@
+@import "../../../general.scss";
+.sensor-container {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  align-items: center;
+
+  .btn-deactivate {
+    @extend %button2;
+    background-color: $color_4;
+    color: $color_2;
+  }
+}

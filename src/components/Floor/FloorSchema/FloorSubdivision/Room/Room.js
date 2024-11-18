@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import styles from "./Room.module.scss";
-import { useRooms } from "../../../../../../contexts/RoomsContext";
+import { useRooms } from "../../../../../contexts/RoomsContext";
 
 function Room({ room, subdivisionSize, roomId }) {
   const roomHeight = (room.area / subdivisionSize) * 100;
@@ -25,8 +25,8 @@ function Room({ room, subdivisionSize, roomId }) {
   return (
     <div
       onClick={handleClick}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
+      // onMouseEnter={handleMouseEnter}
+      // onMouseLeave={handleMouseLeave}
       id={roomId}
       className={`${styles.room} ${
         room.sensors.reduce((acc, cur) =>

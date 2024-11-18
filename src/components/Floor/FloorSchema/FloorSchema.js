@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import styles from "./FloorSchema.module.scss";
 import FloorSubdivision from "./FloorSubdivision/FloorSubdivision";
-import { useRooms } from "../../../../contexts/RoomsContext";
+import { useRooms } from "../../../contexts/RoomsContext";
 function FloorSchema() {
   const { rooms } = useRooms();
 

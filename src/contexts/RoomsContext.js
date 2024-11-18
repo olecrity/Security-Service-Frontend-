@@ -82,6 +82,12 @@ function reducer(state, action) {
         ...state,
         currentRoom: state.rooms.find((room) => room.id === action.payload),
       };
+    case "roomSensors/hide": {
+      return {
+        ...state,
+        currentRoom: null,
+      };
+    }
     case "sensor/deactivate":
       return {
         ...state,
