@@ -53,14 +53,18 @@ footer{
     font-weight: 200;
 }
 
-.documentation_section{
+.documentation_page{
     min-height: calc(100vh - 100px - 320px);
 }
 
-.guide_section{
+.guide_page{
     min-height: calc(100vh - 100px - 320px);
 }
 
-.github_section{
+.github_page{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
     min-height: calc(100vh - 100px - 320px);
 }

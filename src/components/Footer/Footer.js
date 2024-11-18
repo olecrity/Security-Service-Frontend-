@@ -23,7 +23,7 @@ function Footer() {
             <div className={styles.footer_section}>
                 <div className={styles.contact_link_section}>
                 <h3>Links</h3>
-                <p className={styles.part3_footer}><NavLink to="git" className={styles.navigation} >Github</NavLink></p>
+                <p className={styles.part3_footer}><NavLink to="git" className={styles.navigation} >Project</NavLink></p>
                 </div>
             </div>
         </div>
