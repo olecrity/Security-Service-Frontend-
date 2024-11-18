@@ -20,24 +20,16 @@ function CreateBuilding() {
             </div>
             <div className={styles.buttons_section}>
                 <button className={styles.main_title_btn}>
-                    <a className={styles.navigation}>
-                        <p className={styles.main_btn_text}>Add T1 foor</p>
-                    </a>
+                Add T1 foor
                 </button>
                 <button className={styles.main_title_btn}>
-                    <a className={styles.navigation}>
-                        <p className={styles.main_btn_text}>Add T2 foor</p>
-                    </a>
+                Add T2 foor
                 </button>
                 <button className={styles.main_title_btn}>
-                    <a className={styles.navigation}>
-                        <p className={styles.main_btn_text}>Add T3 foor</p>
-                    </a>
+                Add T3 foor
                 </button>
                 <button id={styles.submit_struct_btn} className={styles.main_title_btn}>
-                    <a className={styles.navigation}>
-                        <p className={styles.main_btn_text}>Submit structure</p>
-                    </a>
+                Submit structure
                 </button>
             </div>
         </div>

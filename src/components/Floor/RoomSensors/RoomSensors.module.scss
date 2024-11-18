@@ -7,19 +7,11 @@
   align-items: start;
   justify-content: start;
   background-color: $color_1;
-
-  padding-right: 40px;
-  padding-left: 40px;
-  padding-top: 40px;
-  padding-bottom: 40px;
-
+  padding: 40px;
   height: 300px;
   width: 600px;
-
   overflow: auto;
-
   border-radius: 10px;
-
   box-shadow: 4px 8px 30px 3px rgba(0, 0, 0, 0.164);
 
   .sensors-title-container {
@@ -31,9 +23,15 @@
 
     .btn-close {
       @extend %button2;
-
-      background-color: orangered;
       color: $color_2;
+      
+    }
+
+    .btn-close:hover{
+      width: 104px;
+      height: 40px;
+      font-size: 14px;
+      margin: 0;
     }
   }
 }

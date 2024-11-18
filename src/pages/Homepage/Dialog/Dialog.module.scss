@@ -121,12 +121,28 @@ form {
 
 #submitData{
     @extend %button2;
+    color: $color_4;
     background: linear-gradient(90deg, rgba(0,193,214,1) 0%, rgba(0,193,214,1) 93%);
 }
 
+#submitData:hover{
+    width: 104px;
+    height: 40px;
+    font-size: 14px;
+    margin: 0;
+}
+
 #cancel_submit{
-    @extend %button2;  
+    @extend %button2; 
+    color: $color_4; 
     background: linear-gradient(90deg, rgba(0,193,214,1) 0%, rgba(0,193,214,1) 93%);
+}
+
+#cancel_submit:hover{
+    width: 104px;
+    height: 40px;
+    font-size: 14px;
+    margin: 0;
 }
 
 .close_modal{
