@@ -1,4 +1,5 @@
 import styles from "./PastSimulations.module.scss";
+import { NavLink } from "react-router-dom";
 
 function PastSimulations() {
     return ( 
@@ -18,9 +19,9 @@ function PastSimulations() {
           </button>
           <div className={styles.button_section3}>
             <button className={styles.main_title_btn2}>
-              <a className={styles.navigation}>
+              <NavLink to="/house" className={styles.navigation}>
                   <p className={styles.main_btn_text}>Continute to simulation</p>
-              </a>
+              </NavLink>
             </button>
           </div>
         </div>

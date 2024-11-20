@@ -16,7 +16,7 @@ function GitHub() {
     title: "Backend",
     image: "../../backend.png",
     description: "The backend of a web application is the server-side part responsible for processing data, performing business logic, and ensuring seamless communication between the user interface (frontend) and the database or other external systems.",
-    repository_link: "https://github.com/olecrity/Security-Service-Frontend-"
+    repository_link: "https://github.com/Orester0/KP_teamproject_back"
   }
 
   var database = {
@@ -24,7 +24,7 @@ function GitHub() {
     title: "Database",
     image: "../../database.png",
     description: "A database is a structured collection of data that is stored and managed to support efficient retrieval, modification, and storage of information. In the context of a project, it serves as the backbone for managing and persisting application data.",
-    repository_link: "https://github.com/olecrity/Security-Service-Frontend-"
+    repository_link: "https://ijahdsciuhqw9reyugadfliuhaweoiuhaswdfkjhbaedf.com"
   }
 
   details.push(backend);

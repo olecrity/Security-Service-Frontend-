@@ -6,7 +6,7 @@
   justify-content: space-around;
   flex-direction: row;
   margin: 50px 15px;
-  min-height: 62vh;
+  min-height: calc(100vh - 100px - 330px);
 
   .house {
     display: grid;

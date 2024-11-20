@@ -13,7 +13,6 @@ function Footer() {
             </div>
             <div className={styles.footer_section}>
                 <h3>System</h3>
-                <p className={styles.part3_footer} ><NavLink to="####" className={styles.navigation} >Terms of Service</NavLink></p>
                 <p className={styles.part3_footer}><NavLink to="documentation" className={styles.navigation} >Documentation</NavLink></p>
             </div>
             <div className={styles.footer_section}>

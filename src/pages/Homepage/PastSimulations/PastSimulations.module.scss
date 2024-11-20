@@ -21,7 +21,6 @@
         align-self: center;
     }
     .button_section3{
-        //height: 130px;
         display: flex;
         justify-content: center;
         align-items: flex-end;
@@ -34,6 +33,10 @@
             width: 194px;
             height: 65px; 
             font-size: 20px;
+            .navigation{
+                text-decoration: none;
+                color: $color_4;
+            }
             p{
                 margin: 0 20px;
             }
