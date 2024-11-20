@@ -41,7 +41,7 @@ function Homepage() {
         <form className={styles.form} method="dialog">
           <div id={styles.valid_error} className={styles.non_active}></div>
           <div className={styles.error + " " + styles.non_active}></div>
-          <label for="name" className={styles.namelabel}>
+          <label htmlFor="name" className={styles.namelabel}>
             Userame
           </label>
           <img className="img_input1" src="../img/Vector.png" alt="" />
@@ -55,7 +55,7 @@ function Homepage() {
             aria-describedby="Name"
           />{" "}
           <br />
-          <label for="password" className={styles.passwordlabel}>
+          <label htmlFor="password" className={styles.passwordlabel}>
             Password
           </label>
           <img
@@ -74,7 +74,7 @@ function Homepage() {
           <br />
           <div className={styles.dialog_submit}>
             <button id={styles.submitData}>Submit</button>
-            <button id={styles.cancel_submit} formnovalidate="formnovalidate">
+            <button id={styles.cancel_submit} formNoValidate="formnovalidate">
               Cancel
             </button>
           </div>

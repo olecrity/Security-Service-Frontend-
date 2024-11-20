@@ -1,15 +1,15 @@
 import FloorSchema from "./FloorSchema/FloorSchema";
 import styles from "./Floor.module.scss";
 import RoomSensors from "./RoomSensors/RoomSensors";
-import { RoomsProvider, useRooms } from "../../contexts/RoomsContext";
 import InAppSimulation from "../InAppSimulation/InAppSimulation";
+import { useBuilding } from "../../contexts/BuidingContext";
 
 function Floor() {
-  const { currentRoom } = useRooms();
+  const { currentRoom, isLoading } = useBuilding();
 
   return (
     <div className={styles["floor-page"]}>
-      <FloorSchema />
+      {!isLoading && <FloorSchema />}
       <div>
         {currentRoom && <RoomSensors />}
         <InAppSimulation />

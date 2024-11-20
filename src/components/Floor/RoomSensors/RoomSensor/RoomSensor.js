@@ -1,10 +1,10 @@
-import { useRooms } from "../../../../contexts/RoomsContext";
+import { useBuilding } from "../../../../contexts/BuidingContext";
 import styles from "./RoomSensor.module.scss";
 
 function RoomSensor({ sensor }) {
-  const { dispatch } = useRooms();
+  const { dispatch } = useBuilding();
   function handleOnDeactivateSensor() {
-    dispatch({ type: "sensor/deactivate", payload: sensor.id });
+    dispatch({ type: "room/sensor/deactivate", payload: sensor.id });
   }
 
   return (

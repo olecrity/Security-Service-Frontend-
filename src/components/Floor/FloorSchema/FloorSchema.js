@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import styles from "./FloorSchema.module.scss";
 import FloorSubdivision from "./FloorSubdivision/FloorSubdivision";
-import { useRooms } from "../../../contexts/RoomsContext";
+import { useBuilding } from "../../../contexts/BuidingContext";
 function FloorSchema() {
-  const { rooms } = useRooms();
+  const { currentFloor } = useBuilding();
 
   const [leftRooms, setLeftRooms] = useState([]);
   const [corridor, setCorridor] = useState([]);
@@ -14,16 +14,12 @@ function FloorSchema() {
     function () {
       const container = document.getElementById("container");
       setFloorHeight(container.getBoundingClientRect().width);
-      console.log(container, container.getBoundingClientRect());
-
-      setCorridor(rooms.filter((room) => room.type === "corridor"));
-
-      const roomsSorted = rooms.toSorted((a, b) => (a.area > b.area ? -1 : 1));
-
+      setCorridor(
+        currentFloor.rooms.filter((room) => room.type === "corridor")
+      );
       let tempLeft = [];
       let tempRight = [];
-      rooms.forEach((room) => {
-        console.log(tempLeft.reduce((acc, cur) => acc + cur.area, 0));
+      currentFloor.rooms.forEach((room) => {
         if (room.type === "corridor") {
         } else if (
           tempLeft.reduce((acc, cur) => acc + cur.area, 0) + room.area <
@@ -37,7 +33,7 @@ function FloorSchema() {
       setLeftRooms(tempLeft);
       setRightRooms(tempRight);
     },
-    [rooms]
+    [currentFloor.rooms]
   );
   return (
     <div id="container" className={styles["floor-outline"]}>

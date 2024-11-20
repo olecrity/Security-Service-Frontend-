@@ -6,6 +6,7 @@ import Homepage from "./pages/Homepage/Homepage";
 import FloorPage from "./pages/FloorPage/FloorPage";
 import Footer from "./components/Footer/Footer";
 import AppNav from "./components/AppNav/AppNav";
+import { BuildingProvider } from "./contexts/BuidingContext";
 
 function App() {
   const [floors, setFloors] = useState([
@@ -16,15 +17,17 @@ function App() {
     "floor",
   ]);
   return (
-    <BrowserRouter>
-      <AppNav></AppNav>
-      <Routes>
-        <Route path="/" element={<Homepage />} />
-        <Route path="house" element={<House floors={floors} />} />
-        <Route path="floor" element={<FloorPage />} />
-      </Routes>
-      <Footer></Footer>
-    </BrowserRouter>
+    <BuildingProvider>
+      <BrowserRouter>
+        <AppNav></AppNav>
+        <Routes>
+          <Route path="/" element={<Homepage />} />
+          <Route path="house" element={<House floors={floors} />} />
+          <Route path="floor" element={<FloorPage />} />
+        </Routes>
+        <Footer></Footer>
+      </BrowserRouter>
+    </BuildingProvider>
   );
 }
 
