@@ -216,6 +216,71 @@ function reducer(state, action) {
         currentRoom: null,
       };
     }
+    case "room/sensor/activate":
+      const myFloor = state.floors.find((floor) =>
+        floor.rooms.find((room) =>
+          room.sensors.find((sensor) => sensor.id === action.payload)
+        )
+      );
+      const myRoom = myFloor.rooms.find((room) =>
+        room.sensors.find((sensor) => sensor.id === action.payload)
+      );
+      console.log(action.payload, myFloor, myRoom);
+      return {
+        ...state,
+        floors: state.floors.map((floor) =>
+          floor.id === myFloor.id
+            ? {
+                ...floor,
+                rooms: floor.rooms.map((room) =>
+                  room.id === myRoom.id
+                    ? {
+                        ...room,
+                        sensors: room.sensors.map((sensor) =>
+                          sensor.id === action.payload
+                            ? { ...sensor, status: "active" }
+                            : sensor
+                        ),
+                      }
+                    : room
+                ),
+              }
+            : floor
+        ),
+        currentFloor:
+          state.currentFloor !== null
+            ? state.currentFloor.id === myFloor.id
+              ? {
+                  ...state.currentFloor,
+                  rooms: state.currentFloor.rooms.map((room) =>
+                    room.id === myRoom.id
+                      ? {
+                          ...room,
+                          sensors: room.sensors.map((sensor) =>
+                            sensor.id === action.payload
+                              ? { ...sensor, status: "active" }
+                              : sensor
+                          ),
+                        }
+                      : room
+                  ),
+                }
+              : { ...state.currentFloor }
+            : null,
+        currentRoom:
+          state.currentRoom !== null
+            ? state.currentRoom.id === myRoom.id
+              ? {
+                  ...state.currentRoom,
+                  sensors: state.currentRoom.sensors.map((sensor) =>
+                    sensor.id === action.payload
+                      ? { ...sensor, status: "active" }
+                      : sensor
+                  ),
+                }
+              : { ...state.currentRoom }
+            : null,
+      };
     case "room/sensor/deactivate":
       return {
         ...state,
