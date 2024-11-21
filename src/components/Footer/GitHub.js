@@ -24,7 +24,7 @@ function GitHub() {
     title: "Database",
     image: "../../database.png",
     description: "A database is a structured collection of data that is stored and managed to support efficient retrieval, modification, and storage of information. In the context of a project, it serves as the backbone for managing and persisting application data.",
-    repository_link: "https://ijahdsciuhqw9reyugadfliuhaweoiuhaswdfkjhbaedf.com"
+    repository_link: "https://github.com/Orester0/KP_teamproject_back/tree/db"
   }
 
   details.push(backend);

@@ -24,7 +24,7 @@ function Dialog({ mode, onClose }) {
             <input type="password" id={styles.FromPassword} className={styles.name + ' ' + styles._req} required aria-describedby="passwordHelp"placeholder="Enter your password" /> <br /> */}
 
             <div className={styles.dialog_submit}>
-                <button id={styles.submitData}>Submit</button>
+                <button id={styles.submitData} onClick={onClose}>Submit</button>
                 <button id={styles.cancel_submit} onClick={onClose} formnovalidate="formnovalidate">Cancel</button>
             </div>
             </form>

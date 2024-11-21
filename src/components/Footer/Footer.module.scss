@@ -55,6 +55,15 @@ footer{
 
 .documentation_page{
     min-height: calc(100vh - 100px - 320px);
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    .section_img{
+        margin: 20px 0;
+        width: 60%;
+        height: auto;
+    }
 }
 
 .guide_page{

@@ -33,7 +33,6 @@ function CreateBuilding() {
                 </button>
             </div>
         </div>
-      
     </div>
   );
 }
