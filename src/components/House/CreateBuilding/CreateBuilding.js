@@ -20,13 +20,13 @@ function CreateBuilding() {
             </div>
             <div className={styles.buttons_section}>
                 <button className={styles.main_title_btn}>
-                Add T1 foor
+                Add T1 floor
                 </button>
                 <button className={styles.main_title_btn}>
-                Add T2 foor
+                Add T2 floor
                 </button>
                 <button className={styles.main_title_btn}>
-                Add T3 foor
+                Add T3 floor
                 </button>
                 <button id={styles.submit_struct_btn} className={styles.main_title_btn}>
                 Submit structure
