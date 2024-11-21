@@ -6,6 +6,7 @@ import Homepage from "./pages/Homepage/Homepage";
 import FloorPage from "./pages/FloorPage/FloorPage";
 import Footer from "./components/Footer/Footer";
 import AppNav from "./components/AppNav/AppNav";
+import { BuildingProvider } from "./contexts/BuidingContext";
 
 import Git from "./components/Footer/GitHub";
 import Guidance from "./components/Footer/Guide";
@@ -20,18 +21,20 @@ function App() {
     "floor",
   ]);
   return (
-    <BrowserRouter>
-      <AppNav></AppNav>
-      <Routes>
-        <Route path="/" element={<Homepage />} />
-        <Route path="house" element={<House floors={floors} />} />
-        <Route path="floor" element={<FloorPage />} />
-        <Route path="git" element={<Git />} />
-        <Route path="guidance" element={<Guidance />} />
-        <Route path="documentation" element={<Documentation />} />
-      </Routes>
-      <Footer></Footer>
-    </BrowserRouter>
+    <BuildingProvider>
+      <BrowserRouter>
+        <AppNav></AppNav>
+        <Routes>
+          <Route path="/" element={<Homepage />} />
+          <Route path="house" element={<House />} />
+          <Route path="floor" element={<FloorPage />} />
+          <Route path="git" element={<Git />} />
+          <Route path="guidance" element={<Guidance />} />
+          <Route path="documentation" element={<Documentation />} />
+        </Routes>
+        <Footer></Footer>
+      </BrowserRouter>
+    </BuildingProvider>
   );
 }
 

@@ -21,7 +21,10 @@ function Homepage() {
 
   return (
     <div className={styles.main}>
-      <Title onLoginClick={() => openDialog("login")} onSignupClick={() => openDialog("signup")} />
+      <Title
+        onLoginClick={() => openDialog("login")}
+        onSignupClick={() => openDialog("signup")}
+      />
       {isDialogVisible && <Dialog mode={dialogMode} onClose={closeDialog} />}
       <div className={styles.second_section}>
         <PastSimulations />

@@ -1,4 +1,4 @@
-@import '../../general.scss';
+@import "../../general.scss";
 
 .house-floor {
   display: flex;
@@ -11,7 +11,7 @@
   margin: 5px 10px;
   padding: 0 40px;
   border: solid 1px $color_5;
-  background-color: $color_4; //change to $color_6 with opacity 50%in order to display error of the sensor 
+  background-color: $color_4; //change to $color_6 with opacity 50%in order to display error of the sensor
   border-radius: 5px;
 }
 
@@ -19,7 +19,7 @@
   background-color: #dadada;
 }
 
-.sensor{
+.sensor {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -27,8 +27,8 @@
   border-radius: 4px;
   box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.164);
   margin: 0 5%;
-  background-color: $color_4; //change to $color_6 to display error of the sensor 
-  .decoration{
+  background-color: $color_4; //change to $color_6 to display error of the sensor
+  .decoration {
     z-index: 1;
     justify-self: center;
     width: 10px;
@@ -36,13 +36,37 @@
     margin: 10px 5px 10px 10px;
     border-radius: 50px;
 
-    &.color-1 { background-color: $color_sensor_1; }
-    &.color-2 { background-color: $color_sensor_2; }
-    &.color-3 { background-color: $color_sensor_3; }
-    &.color-4 { background-color: $color_sensor_4; }
+    &.color-1 {
+      background-color: $color_sensor_1;
+    }
+    &.color-2 {
+      background-color: $color_sensor_2;
+    }
+    &.color-3 {
+      background-color: $color_sensor_3;
+    }
+    &.color-4 {
+      background-color: $color_sensor_4;
+    }
   }
-  .sensors_amount{
+  .sensors_amount {
     margin: 5px 10px 5px 0;
   }
 }
 
+.alarm {
+  animation-name: active-sensor;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+}
+@keyframes active-sensor {
+  0% {
+    border: $color_5 solid 1px;
+  }
+  50% {
+    border: red solid 5px;
+  }
+  100% {
+    border: $color_5 solid 1px;
+  }
+}

@@ -1,12 +1,10 @@
-import { RoomsProvider } from "../../contexts/RoomsContext";
 import Floor from "../../components/Floor/Floor";
+import { BuildingProvider } from "../../contexts/BuidingContext";
 
 function FloorPage() {
   return (
     <div>
-      <RoomsProvider>
-        <Floor />
-      </RoomsProvider>
+      <Floor />
     </div>
   );
 }
