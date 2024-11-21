@@ -9,3 +9,12 @@ root.render(
     <App />
   </React.StrictMode>
 );
+
+async function simulateActivity(building) {
+  const allSensors = building.floors.map((floor) =>
+    floor.rooms.map((room) => room.sensors.map((sensor) => sensor))
+  );
+  console.log(allSensors);
+}
+
+export { simulateActivity };

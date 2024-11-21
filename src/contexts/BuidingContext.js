@@ -304,9 +304,7 @@ function BuildingProvider({ children }) {
 function useBuilding() {
   const context = useContext(BuildingContext);
   if (context === undefined)
-    throw new Error(
-      "💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥 BuildingContext was used outside the RoomsProvider"
-    );
+    throw new Error("💥 BuildingContext was used outside the RoomsProvider");
   return context;
 }
 
