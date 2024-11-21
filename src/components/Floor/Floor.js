@@ -1,7 +1,7 @@
 import FloorSchema from "./FloorSchema/FloorSchema";
 import styles from "./Floor.module.scss";
 import RoomSensors from "./RoomSensors/RoomSensors";
-import InAppSimulation from "../InAppSimulation/InAppSimulation";
+import InAppSimulation from "../House/SimulationActions/SimulationActions.js";
 import { useBuilding } from "../../contexts/BuidingContext";
 
 function Floor() {
