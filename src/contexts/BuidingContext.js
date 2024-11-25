@@ -9,180 +9,8 @@ const initialState = {
   error: null,
   currentFloor: null,
   currentRoom: null,
+  buildingCreation: null,
 };
-
-// const initialState = {
-//   floors: [
-//     {
-//       id: 1,
-//       rooms: [
-//         {
-//           area: 10,
-//           id: 1,
-//           type: "kitchen",
-//           sensors: [
-//             { id: 11, type: "heat", status: "active" },
-//             { id: 12, type: "move", status: "inactive" },
-//             { id: 13, type: "move", status: "active" },
-//           ],
-//         },
-//         {
-//           area: 10,
-//           id: 2,
-//           type: "toilet",
-//           sensors: [
-//             { id: 21, type: "heat", status: "active" },
-//             { id: 22, type: "camera", status: "inactive" },
-//             { id: 23, type: "move", status: "active" },
-//           ],
-//         },
-//         {
-//           area: 20,
-//           id: 3,
-//           type: "corridor",
-//           sensors: [
-//             { id: 31, type: "heat", status: "active" },
-//             { id: 32, type: "move", status: "inactive" },
-//             { id: 33, type: "move", status: "inactive" },
-//             { id: 34, type: "move", status: "inactive" },
-//             { id: 35, type: "move", status: "inactive" },
-//             { id: 36, type: "move", status: "inactive" },
-//           ],
-//         },
-//         {
-//           area: 40,
-//           id: 4,
-//           type: "office",
-//           sensors: [
-//             { id: 41, type: "heat", status: "inactive" },
-//             { id: 42, type: "move", status: "inactive" },
-//             { id: 43, type: "move", status: "inactive" },
-//             { id: 44, type: "camera", status: "inactive" },
-//             { id: 45, type: "camera", status: "inactive" },
-//           ],
-//         },
-//         {
-//           area: 10,
-//           id: 5,
-//           type: "restingZone",
-//           sensors: [
-//             { id: 51, type: "heat", status: "active" },
-//             { id: 52, type: "move", status: "inactive" },
-//             { id: 53, type: "move", status: "active" },
-//           ],
-//         },
-//         {
-//           area: 10,
-//           id: 6,
-//           type: "meetingZone",
-//           sensors: [
-//             { id: 61, type: "heat", status: "active" },
-//             { id: 62, type: "move", status: "inactive" },
-//             { id: 63, type: "move", status: "active" },
-//           ],
-//         },
-//       ],
-//     },
-//     {
-//       id: 2,
-//       rooms: [
-//         {
-//           area: 5,
-//           id: 1,
-//           type: "kitchen",
-//           sensors: [
-//             { id: 11, type: "heat", status: "active" },
-//             { id: 12, type: "move", status: "inactive" },
-//             { id: 13, type: "move", status: "active" },
-//           ],
-//         },
-//         {
-//           area: 2,
-//           id: 2,
-//           type: "toilet",
-//           sensors: [
-//             { id: 21, type: "heat", status: "active" },
-//             { id: 22, type: "camera", status: "inactive" },
-//             { id: 23, type: "move", status: "active" },
-//           ],
-//         },
-//         {
-//           area: 10,
-//           id: 3,
-//           type: "corridor",
-//           sensors: [
-//             { id: 31, type: "heat", status: "active" },
-//             { id: 32, type: "move", status: "inactive" },
-//             { id: 33, type: "move", status: "inactive" },
-//             { id: 34, type: "move", status: "inactive" },
-//             { id: 35, type: "move", status: "inactive" },
-//             { id: 36, type: "move", status: "inactive" },
-//           ],
-//         },
-//         {
-//           area: 28,
-//           id: 4,
-//           type: "office",
-//           sensors: [
-//             { id: 41, type: "heat", status: "inactive" },
-//             { id: 42, type: "move", status: "inactive" },
-//             { id: 43, type: "move", status: "inactive" },
-//             { id: 44, type: "camera", status: "inactive" },
-//             { id: 45, type: "camera", status: "inactive" },
-//           ],
-//         },
-//         {
-//           area: 10,
-//           id: 5,
-//           type: "restingZone",
-//           sensors: [
-//             { id: 51, type: "heat", status: "active" },
-//             { id: 52, type: "move", status: "inactive" },
-//             { id: 53, type: "move", status: "active" },
-//           ],
-//         },
-//         {
-//           area: 7,
-//           id: 6,
-//           type: "meetingZone",
-//           sensors: [
-//             { id: 61, type: "heat", status: "active" },
-//             { id: 62, type: "move", status: "inactive" },
-//             { id: 63, type: "move", status: "active" },
-//           ],
-//         },
-//         {
-//           area: 25,
-//           id: 4,
-//           type: "office",
-//           sensors: [
-//             { id: 41, type: "heat", status: "inactive" },
-//             { id: 42, type: "move", status: "inactive" },
-//             { id: 43, type: "move", status: "inactive" },
-//             { id: 44, type: "camera", status: "inactive" },
-//             { id: 45, type: "camera", status: "inactive" },
-//           ],
-//         },
-//         {
-//           area: 13,
-//           id: 4,
-//           type: "office",
-//           sensors: [
-//             { id: 41, type: "heat", status: "inactive" },
-//             { id: 42, type: "move", status: "inactive" },
-//             { id: 43, type: "move", status: "inactive" },
-//             { id: 44, type: "camera", status: "inactive" },
-//             { id: 45, type: "camera", status: "inactive" },
-//           ],
-//         },
-//       ],
-//     },
-//   ],
-//   isLoading: false,
-//   currentFloor: null,
-//   currentRoom: null,
-//   error: "",
-// };
 
 function reducer(state, action) {
   switch (action.type) {
@@ -197,6 +25,15 @@ function reducer(state, action) {
         floors: action.payload,
         isLoading: false,
         currentFloor: action.payload[0],
+      };
+    case "building/create":
+      return { ...state, buildingCreation: { floors: [] } };
+    case "buiding/floors/add":
+      return {
+        ...state,
+        buildingCreation: {
+          floors: [...state.buildingCreation.floors, action.payload],
+        },
       };
     case "rooms/shown":
       return {
@@ -333,8 +170,10 @@ function reducer(state, action) {
 }
 
 function BuildingProvider({ children }) {
-  const [{ floors, isLoading, currentFloor, currentRoom, error }, dispatch] =
-    useReducer(reducer, initialState);
+  const [
+    { floors, isLoading, currentFloor, currentRoom, error, buildingCreation },
+    dispatch,
+  ] = useReducer(reducer, initialState);
 
   useEffect(function () {
     async function fetchFloors() {
@@ -359,6 +198,7 @@ function BuildingProvider({ children }) {
         currentRoom,
         error,
         dispatch,
+        buildingCreation,
       }}
     >
       {children}

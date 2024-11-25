@@ -1,6 +1,6 @@
-@import '../general.scss';
+@import "../general.scss";
 
-.main_house{
+.main_house {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
@@ -11,7 +11,7 @@
   .house {
     display: grid;
     box-sizing: border-box;
-    border: 0px ;
+    border: 0px;
     border-radius: 5px;
     width: fit-content;
     height: 600px;
@@ -20,12 +20,9 @@
     padding: 5px 0;
   }
 
-  .building_structure{
+  .building_structure {
     display: flex;
     flex-direction: column;
+    width: 50%;
   }
-  
 }
-
-
-

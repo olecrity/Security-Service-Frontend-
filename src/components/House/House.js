@@ -3,9 +3,10 @@ import CreateBuilding from "./CreateBuilding/CreateBuilding.js";
 import SimulationActions from "./SimulationActions/SimulationActions.js";
 import styles from "./House.module.scss";
 import { useBuilding } from "../../contexts/BuidingContext.js";
+import NewBuilding from "./NewBuilding/NewBuilding.js";
 
 function House() {
-  const { floors } = useBuilding();
+  const { floors, buildingCreation } = useBuilding();
 
   return (
     <div className={styles.main_house}>
@@ -19,7 +20,11 @@ function House() {
       </div>
 
       <div className={styles.building_structure}>
-        <CreateBuilding></CreateBuilding>
+        {buildingCreation === null ? (
+          <NewBuilding></NewBuilding>
+        ) : (
+          <CreateBuilding></CreateBuilding>
+        )}
         <SimulationActions></SimulationActions>
       </div>
     </div>

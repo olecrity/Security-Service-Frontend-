@@ -1,0 +1,23 @@
+@import "../../general.scss";
+
+.new-building {
+  padding-top: 40px;
+  width: 80%;
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .new-building-input {
+    height: 40px;
+    width: 200px;
+  }
+  .new-building-button-container {
+    width: 150px;
+  }
+  .new-building-btn {
+    @extend %button1;
+  }
+  .new-building-btn:hover {
+  }
+}

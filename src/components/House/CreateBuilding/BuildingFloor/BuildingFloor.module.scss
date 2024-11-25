@@ -1,0 +1,22 @@
+@import "../../../general.scss";
+
+.floor-container {
+  margin-top: 4px;
+  // border: 1px solid grey;
+  height: 35px;
+  .floor-cell {
+    text-align: center;
+    border: 1px solid grey;
+    background-color: $color_sensor_2;
+
+    .btn-delete {
+      border: 0px;
+      border-radius: 5px;
+      padding: 4px 10px 4px 10px;
+      background-color: red;
+    }
+    .btn-delete:hover {
+      background-color: rgb(240, 0, 0);
+    }
+  }
+}
