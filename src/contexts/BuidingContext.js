@@ -159,7 +159,7 @@ function reducer(state, action) {
                         ...room,
                         sensors: room.sensors.map((sensor) =>
                           sensor.ID === action.payload
-                            ? { ...sensor, status: "inactive" }
+                            ? { ...sensor, status: "active" }
                             : sensor
                         ),
                       }
@@ -176,7 +176,7 @@ function reducer(state, action) {
                   ...room,
                   sensors: room.sensors.map((sensor) =>
                     sensor.ID === action.payload
-                      ? { ...sensor, status: "inactive" }
+                      ? { ...sensor, status: "active" }
                       : sensor
                   ),
                 }
@@ -187,7 +187,7 @@ function reducer(state, action) {
           ...state.currentRoom,
           sensors: state.currentRoom.sensors.map((sensor) =>
             sensor.ID === action.payload
-              ? { ...sensor, status: "inactive" }
+              ? { ...sensor, status: "active" }
               : sensor
           ),
         },
