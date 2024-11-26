@@ -6,6 +6,7 @@ const DB_BASE_URL = "http://localhost:8080";
 
 const BuildingContext = createContext();
 const initialState = {
+  topic: null,
   simulationStatus: "Not active",
   heightInFloors: null,
   floorArea: null,
@@ -194,6 +195,7 @@ function reducer(state, action) {
     case "simulation/start":
       return {
         ...state,
+        topic: action.payload,
         simulationStatus: "In Progress",
       };
     case "simulation/pause":
@@ -324,8 +326,8 @@ function BuildingProvider({ children }) {
   }
 
   async function startSimulation() {
-    await fetch(
-      `${DB_BASE_URL}/api/building/startSimulation?sessionId=${sessionId}`,
+    const res = await fetch(
+      `${DB_BASE_URL}/api/building/start-simulation?sessionId=${sessionId}`,
       {
         method: "POST",
         headers: {
@@ -333,11 +335,13 @@ function BuildingProvider({ children }) {
         },
       }
     );
-    dispatch({ type: "simulation/start" });
+    const data = await res.json();
+    console.log(data);
+    dispatch({ type: "simulation/start", payload: data.topic });
   }
   async function stopSimulation() {
-    await fetch(
-      `${DB_BASE_URL}/api/building/stopSimulation?sessionId=${sessionId}`,
+    const res = await fetch(
+      `${DB_BASE_URL}/api/building/stop-simulation?sessionId=${sessionId}`,
       {
         method: "POST",
         headers: {
@@ -345,11 +349,13 @@ function BuildingProvider({ children }) {
         },
       }
     );
+    const data = await res.json();
+    console.log(data);
     dispatch({ type: "simulation/stop" });
   }
   async function pauseSimulation() {
     await fetch(
-      `${DB_BASE_URL}/api/building/pauseSimulation?sessionId=${sessionId}`,
+      `${DB_BASE_URL}/api/building/pause-simulation?sessionId=${sessionId}`,
       {
         method: "POST",
         headers: {
@@ -361,7 +367,7 @@ function BuildingProvider({ children }) {
   }
   async function resumeSimulation() {
     await fetch(
-      `${DB_BASE_URL}/api/building/resumeSimulation?sessionId=${sessionId}`,
+      `${DB_BASE_URL}/api/building/resume-simulation?sessionId=${sessionId}`,
       {
         method: "POST",
         headers: {
