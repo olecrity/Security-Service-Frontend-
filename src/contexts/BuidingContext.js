@@ -6,6 +6,7 @@ const DB_BASE_URL = "http://localhost:8080";
 
 const BuildingContext = createContext();
 const initialState = {
+  simulationStatus: "Not active",
   heightInFloors: null,
   floorArea: null,
   floors: [],
@@ -180,6 +181,26 @@ function reducer(state, action) {
           ),
         },
       };
+    case "simulation/start":
+      return {
+        ...state,
+        simulationStatus: "In Progress",
+      };
+    case "simulation/pause":
+      return {
+        ...state,
+        simulationStatus: "Stopped",
+      };
+    case "simulation/resume":
+      return {
+        ...state,
+        simulationStatus: "In Progress",
+      };
+    case "simulation/stop":
+      return {
+        ...state,
+        simulationStatus: "Ended",
+      };
     default:
       throw new Error("Unknown action type");
   }
@@ -279,6 +300,55 @@ function BuildingProvider({ children }) {
     return resultBuilding;
   }
 
+  async function startSimulation() {
+    await fetch(
+      `${DB_BASE_URL}/api/building/startSimulation?sessionId=${sessionId}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    dispatch({ type: "simulation/start" });
+  }
+  async function stopSimulation() {
+    await fetch(
+      `${DB_BASE_URL}/api/building/stopSimulation?sessionId=${sessionId}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    dispatch({ type: "simulation/stop" });
+  }
+  async function pauseSimulation() {
+    await fetch(
+      `${DB_BASE_URL}/api/building/pauseSimulation?sessionId=${sessionId}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    dispatch({ type: "simulation/pause" });
+  }
+  async function resumeSimulation() {
+    await fetch(
+      `${DB_BASE_URL}/api/building/resumeSimulation?sessionId=${sessionId}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    dispatch({ type: "simulation/resume" });
+  }
+
   // місце для сокетів
 
   useEffect(
@@ -310,6 +380,10 @@ function BuildingProvider({ children }) {
         handleAddFloor,
         handleFinalize,
         handleGetBuilding,
+        startSimulation,
+        stopSimulation,
+        resumeSimulation,
+        pauseSimulation,
       }}
     >
       {children}
