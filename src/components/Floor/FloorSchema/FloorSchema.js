@@ -15,12 +15,12 @@ function FloorSchema() {
       const container = document.getElementById("container");
       setFloorHeight(container.getBoundingClientRect().width);
       setCorridor(
-        currentFloor.rooms.filter((room) => room.type === "corridor")
+        currentFloor.rooms.filter((room) => room.RoomType === "Hall")
       );
       let tempLeft = [];
       let tempRight = [];
       currentFloor.rooms.forEach((room) => {
-        if (room.type === "corridor") {
+        if (room.RoomType === "Hall") {
         } else if (
           tempLeft.reduce((acc, cur) => acc + cur.area, 0) + room.area <
           50

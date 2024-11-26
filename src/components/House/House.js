@@ -7,6 +7,7 @@ import NewBuilding from "./NewBuilding/NewBuilding.js";
 
 function House() {
   const { floors, buildingCreation } = useBuilding();
+  console.log(floors);
 
   return (
     <div className={styles.main_house}>

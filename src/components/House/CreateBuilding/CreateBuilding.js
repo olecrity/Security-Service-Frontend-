@@ -4,11 +4,7 @@ import { useBuilding } from "../../../contexts/BuidingContext";
 import BuildingFloor from "./BuildingFloor/BuildingFloor";
 
 function CreateBuilding() {
-  const { buildingCreation, dispatch } = useBuilding();
-
-  function handleAddFloor(floorType) {
-    dispatch({ type: "buiding/floors/add", payload: { type: floorType } });
-  }
+  const { buildingCreation, handleAddFloor, handleFinalize } = useBuilding();
 
   return (
     <div>
@@ -27,8 +23,12 @@ function CreateBuilding() {
               </tr>
             </thead>
             <tbody id={styles.table_body}>
-              {buildingCreation.floors.map((floor) => (
-                <BuildingFloor floor={floor}></BuildingFloor>
+              {buildingCreation.floors.map((floor, index) => (
+                <BuildingFloor
+                  floor={floor}
+                  id={index}
+                  key={index}
+                ></BuildingFloor>
               ))}
             </tbody>
           </table>
@@ -53,6 +53,7 @@ function CreateBuilding() {
             Add Hostel floor
           </button>
           <button
+            onClick={handleFinalize}
             id={styles.submit_struct_btn}
             className={styles.main_title_btn}
           >

@@ -11,6 +11,7 @@ import { BuildingProvider } from "./contexts/BuidingContext";
 import Git from "./components/Footer/GitHub";
 import Guidance from "./components/Footer/Guide";
 import Documentation from "./components/Footer/Documentation";
+import { AuthProvider } from "./contexts/AuthContext";
 
 function App() {
   const [floors, setFloors] = useState([
@@ -21,20 +22,22 @@ function App() {
     "floor",
   ]);
   return (
-    <BuildingProvider>
-      <BrowserRouter>
-        <AppNav></AppNav>
-        <Routes>
-          <Route path="/" element={<Homepage />} />
-          <Route path="house" element={<House />} />
-          <Route path="floor" element={<FloorPage />} />
-          <Route path="git" element={<Git />} />
-          <Route path="guidance" element={<Guidance />} />
-          <Route path="documentation" element={<Documentation />} />
-        </Routes>
-        <Footer></Footer>
-      </BrowserRouter>
-    </BuildingProvider>
+    <AuthProvider>
+      <BuildingProvider>
+        <BrowserRouter>
+          <AppNav></AppNav>
+          <Routes>
+            <Route path="/" element={<Homepage />} />
+            <Route path="house" element={<House />} />
+            <Route path="floor" element={<FloorPage />} />
+            <Route path="git" element={<Git />} />
+            <Route path="guidance" element={<Guidance />} />
+            <Route path="documentation" element={<Documentation />} />
+          </Routes>
+          <Footer></Footer>
+        </BrowserRouter>
+      </BuildingProvider>
+    </AuthProvider>
   );
 }
 

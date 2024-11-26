@@ -19,7 +19,7 @@ function RoomSensors() {
         </button>
       </div>
       {sensors.map((sensor) => (
-        <RoomSensor sensor={sensor} key={sensor.id} />
+        <RoomSensor sensor={sensor} key={sensor.ID} />
       ))}
     </div>
   );

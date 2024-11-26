@@ -8,7 +8,7 @@ function HouseFloor({ floor }) {
   const navigate = useNavigate();
 
   function handleClick() {
-    dispatch({ type: "rooms/shown", payload: floor.id });
+    dispatch({ type: "rooms/shown", payload: floor.ID });
     navigate("/floor");
   }
   return (

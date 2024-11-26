@@ -17,8 +17,8 @@ function FloorSubdivision({ rooms, id, floorHeight }) {
         <Room
           room={room}
           subdivisionSize={size}
-          key={room.id}
-          roomId={room.id}
+          key={room.ID}
+          roomId={room.ID}
         />
       ))}
     </div>

@@ -13,7 +13,7 @@ function SimulationActions() {
             const sensorsArray = [];
             floors.forEach((floor) =>
               floor.rooms.forEach((room) =>
-                room.sensors.forEach((sensor) => sensorsArray.push(sensor.id))
+                room.sensors.forEach((sensor) => sensorsArray.push(sensor.ID))
               )
             );
             console.log(sensorsArray);
