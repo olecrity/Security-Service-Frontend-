@@ -23,11 +23,7 @@ function Room({ room, subdivisionSize, roomId }) {
       onClick={handleClick}
       id={roomId}
       className={`${styles.room} ${
-        room.sensors.reduce(
-          (acc, cur) =>
-            (cur.status === "active" ? true : false) ? acc + 1 : acc,
-          0
-        ) > 0
+        room.sensors.some((sensor) => sensor.status === "active")
           ? styles.alarm
           : ""
       }`}
