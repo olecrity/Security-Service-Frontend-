@@ -5,6 +5,7 @@ import BuildingFloor from "./BuildingFloor/BuildingFloor";
 
 function CreateBuilding() {
   const { buildingCreation, handleAddFloor, handleFinalize } = useBuilding();
+  console.log(buildingCreation);
 
   return (
     <div>

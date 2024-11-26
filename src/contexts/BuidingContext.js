@@ -52,6 +52,17 @@ function reducer(state, action) {
           floors: [...state.buildingCreation.floors, action.payload],
         },
       };
+    case "building/floors/remove":
+      console.log(action.payload);
+      return {
+        ...state,
+        buildingCreation: {
+          ...state.buildingCreation,
+          floors: state.buildingCreation.floors.filter(
+            (_, index) => index !== action.payload
+          ),
+        },
+      };
     case "rooms/shown":
       return {
         ...state,
@@ -208,7 +219,17 @@ function reducer(state, action) {
 
 function BuildingProvider({ children }) {
   const [
-    { floors, isLoading, currentFloor, currentRoom, error, buildingCreation },
+    {
+      floors,
+      isLoading,
+      currentFloor,
+      currentRoom,
+      error,
+      buildingCreation,
+      simulationStatus,
+      heightInFloors,
+      isFinalized,
+    },
     dispatch,
   ] = useReducer(reducer, initialState);
   const { sessionId } = useAuth();
@@ -238,20 +259,26 @@ function BuildingProvider({ children }) {
     });
   }
 
-  async function handleAddFloor(floorType) {
-    await fetch(
-      `${DB_BASE_URL}/api/building/addFloor?sessionId=${sessionId}&floorType=${floorType}`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+  function handleAddFloor(floorType) {
     dispatch({ type: "buiding/floors/add", payload: floorType });
+  }
+  function handleRemoveFloor(id) {
+    dispatch({ type: "building/floors/remove", payload: id });
   }
 
   async function handleFinalize() {
+    console.log(buildingCreation);
+    for (let i = 0; i < buildingCreation.floors.length; i++) {
+      await fetch(
+        `${DB_BASE_URL}/api/building/add-floor?sessionId=${sessionId}&floorType=${buildingCreation.floors[i]}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+    }
     const res = await fetch(
       `${DB_BASE_URL}/api/building/finalize?sessionId=${sessionId}`,
       {
@@ -376,6 +403,9 @@ function BuildingProvider({ children }) {
         error,
         dispatch,
         buildingCreation,
+        simulationStatus,
+        heightInFloors,
+        isFinalized,
         handleCreateBuilding,
         handleAddFloor,
         handleFinalize,
@@ -384,6 +414,7 @@ function BuildingProvider({ children }) {
         stopSimulation,
         resumeSimulation,
         pauseSimulation,
+        handleRemoveFloor,
       }}
     >
       {children}
