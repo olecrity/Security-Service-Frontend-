@@ -53,7 +53,6 @@ function reducer(state, action) {
         },
       };
     case "building/floors/remove":
-      console.log(action.payload);
       return {
         ...state,
         buildingCreation: {
@@ -240,7 +239,6 @@ function BuildingProvider({ children }) {
       heightInFloors: numFloors,
       floorArea: floorArea,
     };
-    console.log(sendBuilding);
 
     await fetch(`${DB_BASE_URL}/api/building/create`, {
       method: "POST",
@@ -267,7 +265,6 @@ function BuildingProvider({ children }) {
   }
 
   async function handleFinalize() {
-    console.log(buildingCreation);
     for (let i = 0; i < buildingCreation.floors.length; i++) {
       await fetch(
         `${DB_BASE_URL}/api/building/add-floor?sessionId=${sessionId}&floorType=${buildingCreation.floors[i]}`,
@@ -289,7 +286,6 @@ function BuildingProvider({ children }) {
       }
     );
     const data = await res.json();
-    console.log(data);
     const goodBuilding = reworkBuildingObject(data);
     dispatch({ type: "floors/loaded", payload: goodBuilding });
   }
