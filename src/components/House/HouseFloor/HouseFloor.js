@@ -15,8 +15,17 @@ function HouseFloor({ floor }) {
     <div
       onClick={handleClick}
       className={`${styles["house-floor"]} 
-      
-      `}
+      ${floor.rooms.reduce((accRoom, curRoom) =>
+        curRoom.sensors.reduce(
+          (accSensor, curSensor) =>
+            (curSensor.status === "active" ? true : false)
+              ? accSensor + 1
+              : accSensor,
+          0
+        ) > 0
+          ? styles.alarm
+          : ""
+      )}`}
     >
       {[1, 2, 3, 4].map((_, index) => (
         <div key={index} className={styles.sensor}>
