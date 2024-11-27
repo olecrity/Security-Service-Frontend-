@@ -126,7 +126,7 @@ function reducer(state, action) {
             : floor
         ),
         currentFloor:
-          state.currentFloor !== null
+          state.currentFloor != null
             ? state.currentFloor.ID === myFloor.ID
               ? {
                   ...state.currentFloor,
@@ -172,7 +172,7 @@ function reducer(state, action) {
                         ...room,
                         sensors: room.sensors.map((sensor) =>
                           sensor.ID === action.payload
-                            ? { ...sensor, status: "active" }
+                            ? { ...sensor, status: "inactive" }
                             : sensor
                         ),
                       }
@@ -189,7 +189,7 @@ function reducer(state, action) {
                   ...room,
                   sensors: room.sensors.map((sensor) =>
                     sensor.ID === action.payload
-                      ? { ...sensor, status: "active" }
+                      ? { ...sensor, status: "inactive" }
                       : sensor
                   ),
                 }
@@ -200,7 +200,7 @@ function reducer(state, action) {
           ...state.currentRoom,
           sensors: state.currentRoom.sensors.map((sensor) =>
             sensor.ID === action.payload
-              ? { ...sensor, status: "active" }
+              ? { ...sensor, status: "inactive" }
               : sensor
           ),
         },
@@ -477,7 +477,7 @@ function BuildingProvider({ children }) {
                 if (sensorId !== null) {
                   dispatch({
                     type: "room/sensor/activate",
-                    payload: 4410,
+                    payload: 4477,
                   });
                 }
               }
