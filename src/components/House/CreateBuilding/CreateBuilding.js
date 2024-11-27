@@ -6,8 +6,14 @@ import BuildingFloor from "./BuildingFloor/BuildingFloor";
 function CreateBuilding() {
   const { buildingCreation, handleAddFloor, handleFinalize } = useBuilding();
 
+  const handleSubmit = () => {
+    document.querySelector(`.${styles["build"]}`).classList.add(styles["hidden"]);
+    handleFinalize();
+    return;
+  };
+
   return (
-    <div>
+    <div className={styles["build"]}>
       <h3 className={styles.main_caption}>Create building structure</h3>
       <div className={styles.create_table}>
         <div className={styles.table_section}>
@@ -53,7 +59,7 @@ function CreateBuilding() {
             Add Hostel floor
           </button>
           <button
-            onClick={handleFinalize}
+            onClick={handleSubmit}
             id={styles.submit_struct_btn}
             className={styles.main_title_btn}
           >

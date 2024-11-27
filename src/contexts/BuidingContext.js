@@ -119,7 +119,7 @@ function reducer(state, action) {
             : floor
         ),
         currentFloor:
-          state.currentFloor !== null
+          state.currentFloor != null
             ? state.currentFloor.ID === myFloor.ID
               ? {
                   ...state.currentFloor,
@@ -399,8 +399,6 @@ function BuildingProvider({ children }) {
     stompClient.connect({}, function(frame) {
 
         stompClient.subscribe(data.topic, function(message) {
-          console.log(message.body);
-
           const parsedMessages = message.body.split('\n').map(line => {
             try {
                 return JSON.parse(line.trim()); // Розбираємо кожен рядок в окремий об'єкт
@@ -408,8 +406,6 @@ function BuildingProvider({ children }) {
                 console.error('Error parsing message:', e);
                 return null; // Якщо виникає помилка при парсингу, повертаємо null
             }
-
-            
           });
 
           parsedMessages.forEach(parsedMessage => {
@@ -423,7 +419,7 @@ function BuildingProvider({ children }) {
                     if (sensorId !== null) {
                       dispatch({
                         type: "room/sensor/activate",
-                        payload:  4410 ,
+                        payload: parseInt(sensorId, 10),
                       });
                   }
                 }

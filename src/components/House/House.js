@@ -7,6 +7,7 @@ import NewBuilding from "./NewBuilding/NewBuilding.js";
 
 function House() {
   const { floors, buildingCreation } = useBuilding();
+  const { isFinalized } = useBuilding();
 
   return (
     <div className={styles.main_house}>
@@ -23,7 +24,7 @@ function House() {
         {buildingCreation === null ? (
           <NewBuilding></NewBuilding>
         ) : (
-          <CreateBuilding></CreateBuilding>
+          isFinalized === false ? <div></div> : <CreateBuilding />
         )}
         <SimulationActions></SimulationActions>
       </div>

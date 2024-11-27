@@ -61,6 +61,10 @@
         width: 144px;
         height: 55px; 
         margin: 0 10px 20px;
+        .navigation{
+            text-decoration: none;
+            color: $color_4;
+        }
         p{
             margin: 0 5px;
         }
