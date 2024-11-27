@@ -1,15 +1,15 @@
-@import '../../../components/general.scss';
+@import "../../../components/general.scss";
 
-.second_section_simulations{
-    width: 50vw;
-    min-height: 470px;
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    justify-content: space-between;
-    h3{
-        padding-left: 12px;
-    }
+.second_section_simulations {
+  width: 50vw;
+  min-height: 470px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: space-between;
+  h3 {
+    padding-left: 12px;
+  }
 
     .button_section2{
         min-height: 180px;
@@ -70,20 +70,24 @@
         }
     }
 
-    @media (min-width: 700px) {
-        .main_title_btn2 {
-            margin: 0 calc(3vw) 20px;
-        }
-    }
-    
-    @media (min-width: 1400px) {
-        .main_title_btn2 {
-            margin: 0 calc(7vw) 20px calc(7vw);
-        }
+    .btn-inactive{
+      display: none;
     }
 
-    .main_title_btn2:hover{ 
-        width: 154px;
-        height: 60px; 
+  @media (min-width: 700px) {
+    .main_title_btn2 {
+      margin: 0 calc(3vw) 20px;
     }
+  }
+
+  @media (min-width: 1400px) {
+    .main_title_btn2 {
+      margin: 0 calc(7vw) 20px calc(7vw);
+    }
+  }
+
+  .main_title_btn2:hover {
+    width: 154px;
+    height: 60px;
+  }
 }

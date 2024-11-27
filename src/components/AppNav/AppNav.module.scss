@@ -1,4 +1,4 @@
-@import '../general.scss';
+@import "../general.scss";
 .main {
   display: flex;
   flex-direction: row;
@@ -15,12 +15,19 @@
     transition: 0.3s;
     text-decoration: none;
   }
-  .pages:hover{
+  .pages:hover {
     transition: 0.3s;
     color: $color_1;
     text-shadow: 1px 5px 8px #c9c9c9;
   }
-  .active{
+  .pages-inactive {
+    color: grey;
+    @extend %font1;
+    font-weight: 600;
+    transition: 0.3s;
+    text-decoration: none;
+  }
+  .active {
     @extend %font1;
     font-weight: 600;
     text-decoration: none;
@@ -35,8 +42,8 @@
   align-items: center;
   width: 100%;
   margin-bottom: 40px;
-  .logo_section_1{
-    .logo_img{
+  .logo_section_1 {
+    .logo_img {
       display: flex;
       width: 210px;
       height: 60px;

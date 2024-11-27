@@ -37,6 +37,22 @@
       }
     }
   }
+  .btn-inactive {
+    @extend %button2;
+    background-color: #dadada;
+    width: 170px;
+    margin: 0 0 0 12px;
+
+    font-size: 16px;
+  }
+  .btn-inactive:hover {
+    width: 170px;
+    height: 40px;
+    margin: 0 0 0 12px;
+
+    font-size: 16px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.164);
+  }
   .new-building-btn:hover {
     a{
       p{

@@ -6,14 +6,16 @@ function RoomSensor({ sensor }) {
   function handleOnDeactivateSensor() {
     dispatch({ type: "room/sensor/deactivate", payload: sensor.ID });
   }
-
+  function formatSensorName(name) {
+    return name.replace(/Sensor$/, " sensor");
+  }
   return (
-    <div className={styles["sensor-container"]}>
-      <p>ID: {sensor.ID} </p>
-      <p>{sensor.type} </p>
-      <p>{sensor.status} </p>
+    <div className={`${styles["sensor-container"]} `}>
+      <p>{formatSensorName(sensor.SensorType)} :</p>
       <button
-        className={styles["btn-deactivate"]}
+        className={`${styles["btn-deactivate"]} ${
+          sensor.status === "active" ? styles.active : ""
+        }`}
         onClick={handleOnDeactivateSensor}
       >
         Deactivate

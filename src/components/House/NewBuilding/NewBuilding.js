@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { useBuilding } from "../../../contexts/BuidingContext";
 import styles from "./NewBuilding.module.scss";
+import { useAuth } from "../../../contexts/AuthContext";
 
 function NewBuilding() {
-  const { dispatch, handleCreateBuilding } = useBuilding();
+  const { handleCreateBuilding, isFinalized } = useBuilding();
+  const { isAuthenticated } = useAuth();
 
   const [numFloors, setNumFloors] = useState("");
   const [floorArea, setFloorArea] = useState("");
@@ -42,8 +44,16 @@ function NewBuilding() {
       )}
       <div className={styles["new-building-button-container"]}>
         <button
-          onClick={handleSubmit}
-          className={styles["new-building-btn"]}
+          onClick={
+            isFinalized
+              ? () => {}
+              : () => handleCreateBuilding(numFloors, floorArea)
+          }
+          className={
+            isAuthenticated && !isFinalized
+              ? styles["new-building-btn"]
+              : styles["btn-inactive"]
+          }
         >
           <a className={styles.navigation}>
             <p className={styles.main_btn_text}>Start Creation</p>

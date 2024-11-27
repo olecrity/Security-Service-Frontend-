@@ -9,13 +9,13 @@ function Dialog({ mode, onClose }) {
   const { handleGetBuilding } = useBuilding();
   async function handleSubmit(e) {
     e.preventDefault();
+    onClose();
     if (mode === "login") {
       await logIn(username);
       await handleGetBuilding();
     } else {
       await signUp(username);
     }
-    onClose();
   }
   return (
     <dialog id={styles.form_block_active} open>

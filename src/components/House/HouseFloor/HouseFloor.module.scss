@@ -13,6 +13,7 @@
   border: solid 1px $color_5;
   background-color: $color_4; //change to $color_6 with opacity 50%in order to display error of the sensor
   border-radius: 5px;
+  box-sizing: border-box;
 }
 
 .house-floor:hover {
