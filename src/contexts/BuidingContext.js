@@ -8,7 +8,7 @@ const DB_BASE_URL = "http://localhost:8080";
 
 let webSocket = null;
 let stompClient = null;
-// var Stomp = require('@stomp/stompjs');
+let shouldStop = false;
 
 const BuildingContext = createContext();
 const initialState = {
@@ -351,7 +351,7 @@ function BuildingProvider({ children }) {
     );
     const data = await res.json();
     console.log(data);
-    connectWebSocket(data);
+    connectWebSocket(data, true);
     dispatch({ type: "simulation/start", payload: data.topic });
   }
   async function stopSimulation() {
@@ -419,7 +419,7 @@ function BuildingProvider({ children }) {
       }
     );
     const data = await res.json();
-    console.log(data);
+    connectWebSocket(data, false);
     dispatch({ type: "simulation/start", payload: data.topic });
   }
   async function stopReplay() {
@@ -433,6 +433,7 @@ function BuildingProvider({ children }) {
       }
     );
     const data = await res.json();
+    disconnectWebSocket();
     dispatch({ type: "simulation/stop" });
   }
 
@@ -443,53 +444,62 @@ function BuildingProvider({ children }) {
 
   // місце для сокетів
 
-  function connectWebSocket(data) {
+  function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+  
+  function connectWebSocket(data, replay) {
     const socket = new SockJS("http://localhost:8080/ws");
     stompClient = Stomp.over(socket);
-
+  
     socket.onopen = function () {
       console.log("open");
     };
-    stompClient.connect({}, function(frame) {
-
-        stompClient.subscribe(data.topic, function(message) {
-          const parsedMessages = message.body.split('\n').map(line => {
-
+    shouldStop = false;
+  
+    stompClient.connect(
+      {},
+      function (frame) {
+        stompClient.subscribe(data.topic, async function (message) {
+          const parsedMessages = message.body.split("\n").map(line => {
             try {
-              return JSON.parse(line.trim()); // Розбираємо кожен рядок в окремий об'єкт
+              return JSON.parse(line.trim()); 
             } catch (e) {
               console.error("Error parsing message:", e);
-              return null; // Якщо виникає помилка при парсингу, повертаємо null
+              return null; 
             }
           });
-
-          parsedMessages.forEach((parsedMessage) => {
+  
+          for (const parsedMessage of parsedMessages) {
+            if (shouldStop) {
+              break; // Припиняємо цикл, якщо потрібна зупинка
+            }
             if (parsedMessage) {
               let sensorId = null;
               let time = null;
               // Перевірка на наявність полів у кожному об'єкті
               if (parsedMessage.sensorId) {
-                  sensorId = parsedMessage.sensorId;
-                  if (sensorId !== null) {
-                    dispatch({
-                      type: "room/sensor/activate",
-                      payload: parseInt(sensorId, 10),
-                    });
+                sensorId = parsedMessage.sensorId;
+
+                console.log( parseInt(sensorId, 10));
+                if (!replay) {
+                  if (shouldStop) {
+                    break; // Припиняємо цикл під час затримки
+                  }
+                  await sleep(5000);
+                }
+                if (sensorId !== null) {
+                  dispatch({
+                    type: "room/sensor/activate",
+                    payload: parseInt(sensorId, 10),
+                  });
                 }
               }
               if (parsedMessage.time) {
-                  time = parsedMessage.time;
+                time = parsedMessage.time;
               }
-
-              // Виведемо значення змінних
-              console.log(sensorId);
-              console.log("Time: " + time);
-
-              // Якщо потрібно, можемо вивести результат для кожного повідомлення
-              const result = `${sensorId || ""}, ${time || ""}`;
-              console.log("Result: " + result);
             }
-          });
+          }
         });
       },
       function (error) {
@@ -498,7 +508,8 @@ function BuildingProvider({ children }) {
     );
   }
 
-  function disconnectWebSocket() {
+  async function disconnectWebSocket() {
+    shouldStop = true;
     if (webSocket) {
       webSocket.close();
       webSocket = null;

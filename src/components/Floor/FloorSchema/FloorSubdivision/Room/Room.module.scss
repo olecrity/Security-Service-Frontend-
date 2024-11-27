@@ -1,9 +1,18 @@
 @import "../../../../general.scss";
 
 .room {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
   box-sizing: border-box;
   border: $color_5 solid 1px;
   background-color: $color_4;
+  .gif{
+    margin: 8px;
+    background-color: white;
+  }
 }
 .room:hover {
   background-color: #dadada;
@@ -23,4 +32,8 @@
   100% {
     border: $color_5 solid 1px;
   }
+}
+
+.hidden{
+  display: none;
 }

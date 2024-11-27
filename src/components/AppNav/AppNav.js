@@ -32,7 +32,7 @@ function AppNav() {
           </NavLink>
         </li>
         <li>
-          {currentFloor !== null ? (
+          {currentFloor != null ? (
             <NavLink
               to="/floor"
               className={({ isActive }) =>
