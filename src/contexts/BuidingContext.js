@@ -21,10 +21,17 @@ const initialState = {
 
 function reducer(state, action) {
   switch (action.type) {
+    case "logout":
+      return { ...initialState };
     case "loading":
       return {
         ...state,
         isLoading: true,
+      };
+    case "loaded":
+      return {
+        ...state,
+        isLoading: false,
       };
     case "floors/loaded":
       return {
@@ -233,15 +240,9 @@ function BuildingProvider({ children }) {
     },
     dispatch,
   ] = useReducer(reducer, initialState);
-  const { sessionId } = useAuth();
+  const { sessionId, logout } = useAuth();
 
   async function handleCreateBuilding(numFloors, floorArea) {
-    const sendBuilding = {
-      sessionId: sessionId,
-      heightInFloors: numFloors,
-      floorArea: floorArea,
-    };
-
     await fetch(`${DB_BASE_URL}/api/building/create`, {
       method: "POST",
       headers: {
@@ -267,9 +268,21 @@ function BuildingProvider({ children }) {
   }
 
   async function handleFinalize() {
-    for (let i = 0; i < buildingCreation.floors.length; i++) {
-      await fetch(
-        `${DB_BASE_URL}/api/building/add-floor?sessionId=${sessionId}&floorType=${buildingCreation.floors[i]}`,
+    try {
+      dispatch({ type: "loading" });
+      for (let i = 0; i < buildingCreation.floors.length; i++) {
+        await fetch(
+          `${DB_BASE_URL}/api/building/add-floor?sessionId=${sessionId}&floorType=${buildingCreation.floors[i]}`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+      }
+      const res = await fetch(
+        `${DB_BASE_URL}/api/building/finalize?sessionId=${sessionId}`,
         {
           method: "POST",
           headers: {
@@ -277,19 +290,14 @@ function BuildingProvider({ children }) {
           },
         }
       );
+      const data = await res.json();
+      const goodBuilding = reworkBuildingObject(data);
+      dispatch({ type: "floors/loaded", payload: goodBuilding });
+    } catch (error) {
+      console.error(error.message);
+    } finally {
+      dispatch({ type: "loaded" });
     }
-    const res = await fetch(
-      `${DB_BASE_URL}/api/building/finalize?sessionId=${sessionId}`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    const data = await res.json();
-    const goodBuilding = reworkBuildingObject(data);
-    dispatch({ type: "floors/loaded", payload: goodBuilding });
   }
   async function handleGetBuilding() {
     const res = await fetch(
@@ -336,7 +344,6 @@ function BuildingProvider({ children }) {
       }
     );
     const data = await res.json();
-    console.log(data);
     dispatch({ type: "simulation/start", payload: data.topic });
   }
   async function stopSimulation() {
@@ -350,7 +357,6 @@ function BuildingProvider({ children }) {
       }
     );
     const data = await res.json();
-    console.log(data);
     dispatch({ type: "simulation/stop" });
   }
   async function pauseSimulation() {
@@ -377,6 +383,53 @@ function BuildingProvider({ children }) {
     );
     dispatch({ type: "simulation/resume" });
   }
+  async function getLogs() {
+    const res = await fetch(
+      `${DB_BASE_URL}/api/session/get-logs?sessionId=${sessionId}`
+    );
+    const data = await res.json();
+    console.log(data);
+    const formattedString = data
+      .map(
+        (sensor) =>
+          `ID: ${sensor.sensorDetails.ID}, SensorType: ${sensor.sensorDetails.SensorType}, activated: ${sensor.activated}, currentTime: ${sensor.currentTime}`
+      )
+      .join("\n");
+    console.log(formattedString);
+    document.getElementById("Logs").value = formattedString;
+  }
+  async function startReplay() {
+    const res = await fetch(
+      `${DB_BASE_URL}/api/building/start-replay?sessionId=${sessionId}&startTime=2024-11-25T14%3A25%3A42&endTime=2024-12-11T14%3A25%3A42`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    const data = await res.json();
+    console.log(data);
+    dispatch({ type: "simulation/start", payload: data.topic });
+  }
+  async function stopReplay() {
+    const res = await fetch(
+      `${DB_BASE_URL}/api/building/stop-replay?sessionId=${sessionId}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    const data = await res.json();
+    dispatch({ type: "simulation/stop" });
+  }
+
+  function logoutAll() {
+    dispatch({ type: "logout" });
+    logout();
+  }
 
   // місце для сокетів
 
@@ -387,7 +440,9 @@ function BuildingProvider({ children }) {
         try {
           await handleGetBuilding();
         } catch (error) {
-          // console.error(error);
+          console.error(error);
+        } finally {
+          dispatch({ type: "loaded" });
         }
       }
       fetchBuilding();
@@ -417,6 +472,10 @@ function BuildingProvider({ children }) {
         resumeSimulation,
         pauseSimulation,
         handleRemoveFloor,
+        getLogs,
+        startReplay,
+        stopReplay,
+        logoutAll,
       }}
     >
       {children}

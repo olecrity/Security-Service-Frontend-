@@ -1,85 +1,104 @@
-@import '../../../components/general.scss';
+@import "../../../components/general.scss";
 
-.second_section_simulations{
-    width: 50vw;
-    min-height: 470px;
+.second_section_simulations {
+  width: 50vw;
+  min-height: 470px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: space-between;
+  h3 {
+    padding-left: 12px;
+  }
+
+  .button_section2 {
+    min-height: 180px;
     display: flex;
-    flex-direction: column;
-    align-items: start;
-    justify-content: space-between;
-    h3{
-        padding-left: 12px;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+    align-self: center;
+  }
+  .button_section3 {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    align-self: flex-end;
+    .main_title_btn2 {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: row;
+      width: 194px;
+      height: 65px;
+      font-size: 20px;
+      .navigation {
+        text-decoration: none;
+        color: $color_4;
+      }
+      p {
+        margin: 0 20px;
+      }
     }
 
-    .button_section2{
-        min-height: 180px;
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction: row;
-        justify-content: center;
-        align-items: flex-end;
-        align-self: center;
+    .main_title_btn2:hover {
+      width: 244px;
+      height: 70px;
+      font-size: 22px;
+      p {
+        margin: 0 20px;
+      }
     }
-    .button_section3{
-        display: flex;
-        justify-content: center;
-        align-items: flex-end;
-        align-self: flex-end;
-        .main_title_btn2{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: row;
-            width: 194px;
-            height: 65px; 
-            font-size: 20px;
-            .navigation{
-                text-decoration: none;
-                color: $color_4;
-            }
-            p{
-                margin: 0 20px;
-            }
-        }
-    
-        .main_title_btn2:hover{ 
-            width: 244px;
-            height: 70px; 
-            font-size: 22px;
-            p{
-                margin: 0 20px;
-            }
-        }
+  }
+  .main_title_btn2 {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    @extend %button1;
+    width: 144px;
+    height: 55px;
+    margin: 0 10px 20px;
+    p {
+      margin: 0 5px;
     }
-    .main_title_btn2{
-        position: relative;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: row;
-        @extend %button1; 
-        width: 144px;
-        height: 55px; 
-        margin: 0 10px 20px;
-        p{
-            margin: 0 5px;
-        }
-    }
+  }
+  .btn-inactive {
+    @extend %button2;
+    background-color: #dadada;
+    width: 144px;
+    height: 55px;
+    font-size: 16px;
 
-    @media (min-width: 700px) {
-        .main_title_btn2 {
-            margin: 0 calc(3vw) 20px;
-        }
+    margin: 0 10px 20px;
+    p {
+      margin: 0 20px;
     }
-    
-    @media (min-width: 1400px) {
-        .main_title_btn2 {
-            margin: 0 calc(7vw) 20px calc(7vw);
-        }
-    }
+  }
+  .btn-inactive:hover {
+    width: 144px;
+    height: 55px;
+    font-size: 16px;
+    margin: 0 10px 20px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.164);
+  }
 
-    .main_title_btn2:hover{ 
-        width: 154px;
-        height: 60px; 
+  @media (min-width: 700px) {
+    .main_title_btn2 {
+      margin: 0 calc(3vw) 20px;
     }
+  }
+
+  @media (min-width: 1400px) {
+    .main_title_btn2 {
+      margin: 0 calc(7vw) 20px calc(7vw);
+    }
+  }
+
+  .main_title_btn2:hover {
+    width: 154px;
+    height: 60px;
+  }
 }
