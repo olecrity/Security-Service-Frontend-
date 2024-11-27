@@ -449,7 +449,7 @@ function BuildingProvider({ children }) {
   }
   
   function connectWebSocket(data, replay) {
-    const socket = new SockJS("http://localhost:8080/ws");
+    const socket = new SockJS("https://localhost:8080/ws");
     stompClient = Stomp.over(socket);
   
     socket.onopen = function () {
