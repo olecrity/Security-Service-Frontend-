@@ -1,11 +1,18 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
 import { useAuth } from "./AuthContext";
+import  SockJS  from 'sockjs-client';
+import { Stomp } from '@stomp/stompjs';
 
 const BASE_URL = "http://localhost:9000";
 const DB_BASE_URL = "http://localhost:8080";
 
+let webSocket = null;
+let stompClient = null;
+// var Stomp = require('@stomp/stompjs');
+
 const BuildingContext = createContext();
 const initialState = {
+  topic: null,
   simulationStatus: "Not active",
   heightInFloors: null,
   floorArea: null,
@@ -50,6 +57,16 @@ function reducer(state, action) {
         buildingCreation: {
           ...state.buildingCreation,
           floors: [...state.buildingCreation.floors, action.payload],
+        },
+      };
+    case "building/floors/remove":
+      return {
+        ...state,
+        buildingCreation: {
+          ...state.buildingCreation,
+          floors: state.buildingCreation.floors.filter(
+            (_, index) => index !== action.payload
+          ),
         },
       };
     case "rooms/shown":
@@ -184,6 +201,7 @@ function reducer(state, action) {
     case "simulation/start":
       return {
         ...state,
+        topic: action.payload,
         simulationStatus: "In Progress",
       };
     case "simulation/pause":
@@ -208,7 +226,17 @@ function reducer(state, action) {
 
 function BuildingProvider({ children }) {
   const [
-    { floors, isLoading, currentFloor, currentRoom, error, buildingCreation },
+    {
+      floors,
+      isLoading,
+      currentFloor,
+      currentRoom,
+      error,
+      buildingCreation,
+      simulationStatus,
+      heightInFloors,
+      isFinalized,
+    },
     dispatch,
   ] = useReducer(reducer, initialState);
   const { sessionId } = useAuth();
@@ -219,7 +247,6 @@ function BuildingProvider({ children }) {
       heightInFloors: numFloors,
       floorArea: floorArea,
     };
-    console.log(sendBuilding);
 
     await fetch(`${DB_BASE_URL}/api/building/create`, {
       method: "POST",
@@ -238,20 +265,25 @@ function BuildingProvider({ children }) {
     });
   }
 
-  async function handleAddFloor(floorType) {
-    await fetch(
-      `${DB_BASE_URL}/api/building/addFloor?sessionId=${sessionId}&floorType=${floorType}`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+  function handleAddFloor(floorType) {
     dispatch({ type: "buiding/floors/add", payload: floorType });
+  }
+  function handleRemoveFloor(id) {
+    dispatch({ type: "building/floors/remove", payload: id });
   }
 
   async function handleFinalize() {
+    for (let i = 0; i < buildingCreation.floors.length; i++) {
+      await fetch(
+        `${DB_BASE_URL}/api/building/add-floor?sessionId=${sessionId}&floorType=${buildingCreation.floors[i]}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+    }
     const res = await fetch(
       `${DB_BASE_URL}/api/building/finalize?sessionId=${sessionId}`,
       {
@@ -262,7 +294,6 @@ function BuildingProvider({ children }) {
       }
     );
     const data = await res.json();
-    console.log(data);
     const goodBuilding = reworkBuildingObject(data);
     dispatch({ type: "floors/loaded", payload: goodBuilding });
   }
@@ -301,8 +332,8 @@ function BuildingProvider({ children }) {
   }
 
   async function startSimulation() {
-    await fetch(
-      `${DB_BASE_URL}/api/building/startSimulation?sessionId=${sessionId}`,
+    const res = await fetch(
+      `${DB_BASE_URL}/api/building/start-simulation?sessionId=${sessionId}`,
       {
         method: "POST",
         headers: {
@@ -310,11 +341,14 @@ function BuildingProvider({ children }) {
         },
       }
     );
-    dispatch({ type: "simulation/start" });
+    const data = await res.json();
+    console.log(data);
+    connectWebSocket(data);
+    dispatch({ type: "simulation/start", payload: data.topic });
   }
   async function stopSimulation() {
-    await fetch(
-      `${DB_BASE_URL}/api/building/stopSimulation?sessionId=${sessionId}`,
+    const res = await fetch(
+      `${DB_BASE_URL}/api/building/stop-simulation?sessionId=${sessionId}`,
       {
         method: "POST",
         headers: {
@@ -322,11 +356,14 @@ function BuildingProvider({ children }) {
         },
       }
     );
+    const data = await res.json();
+    console.log(data);
+    disconnectWebSocket();
     dispatch({ type: "simulation/stop" });
   }
   async function pauseSimulation() {
     await fetch(
-      `${DB_BASE_URL}/api/building/pauseSimulation?sessionId=${sessionId}`,
+      `${DB_BASE_URL}/api/building/pause-simulation?sessionId=${sessionId}`,
       {
         method: "POST",
         headers: {
@@ -338,7 +375,7 @@ function BuildingProvider({ children }) {
   }
   async function resumeSimulation() {
     await fetch(
-      `${DB_BASE_URL}/api/building/resumeSimulation?sessionId=${sessionId}`,
+      `${DB_BASE_URL}/api/building/resume-simulation?sessionId=${sessionId}`,
       {
         method: "POST",
         headers: {
@@ -350,6 +387,77 @@ function BuildingProvider({ children }) {
   }
 
   // місце для сокетів
+
+  function connectWebSocket(data) {
+    const socket = new SockJS("http://localhost:8080/ws");
+    stompClient = Stomp.over(socket);
+
+    socket.onopen = function() {
+      console.log('open');
+    }
+
+    stompClient.connect({}, function(frame) {
+
+        stompClient.subscribe(data.topic, function(message) {
+          console.log(message.body);
+
+          const parsedMessages = message.body.split('\n').map(line => {
+            try {
+                return JSON.parse(line.trim()); // Розбираємо кожен рядок в окремий об'єкт
+            } catch (e) {
+                console.error('Error parsing message:', e);
+                return null; // Якщо виникає помилка при парсингу, повертаємо null
+            }
+
+            
+          });
+
+          parsedMessages.forEach(parsedMessage => {
+            if (parsedMessage) {
+                let sensorId = null;
+                let time = null;
+
+                // Перевірка на наявність полів у кожному об'єкті
+                if (parsedMessage.sensorId) {
+                    sensorId = parsedMessage.sensorId;
+                    if (sensorId !== null) {
+                      dispatch({
+                        type: "room/sensor/activate",
+                        payload:  4410 ,
+                      });
+                  }
+                }
+                if (parsedMessage.time) {
+                    time = parsedMessage.time;
+                }
+
+                // Виведемо значення змінних
+                console.log( sensorId);
+                console.log("Time: " + time);
+
+                // Якщо потрібно, можемо вивести результат для кожного повідомлення
+                const result = `${sensorId || ''}, ${time || ''}`;
+                console.log("Result: " + result);
+            }
+        });
+          
+        });
+        
+    }, function(error) {
+       console.log(`WebSocket error: ${error}`);
+    });
+
+  }
+
+
+
+  function disconnectWebSocket() {
+      if (webSocket) {
+          webSocket.close(); 
+          webSocket = null;
+          console.log('WebSocket disconnected');
+      }
+  }
 
   useEffect(
     function () {
@@ -376,6 +484,9 @@ function BuildingProvider({ children }) {
         error,
         dispatch,
         buildingCreation,
+        simulationStatus,
+        heightInFloors,
+        isFinalized,
         handleCreateBuilding,
         handleAddFloor,
         handleFinalize,
@@ -384,6 +495,7 @@ function BuildingProvider({ children }) {
         stopSimulation,
         resumeSimulation,
         pauseSimulation,
+        handleRemoveFloor,
       }}
     >
       {children}

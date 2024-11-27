@@ -4,7 +4,7 @@ import { useBuilding } from "../../../contexts/BuidingContext";
 import { useNavigate } from "react-router-dom";
 
 function HouseFloor({ floor }) {
-  const { dispatch } = useBuilding();
+  const { dispatch, floors } = useBuilding();
   const navigate = useNavigate();
 
   function handleClick() {
@@ -15,7 +15,13 @@ function HouseFloor({ floor }) {
     <div
       onClick={handleClick}
       className={`${styles["house-floor"]} 
-      
+      ${
+        floor.rooms.some((room) =>
+          room.sensors.some((sensor) => sensor.status === "active")
+        )
+          ? styles.alarm
+          : ""
+      }
       `}
     >
       {[1, 2, 3, 4].map((_, index) => (

@@ -3,8 +3,13 @@ import styles from "./SimulationActions.module.scss";
 import { useBuilding } from "../../../contexts/BuidingContext";
 
 function SimulationActions() {
-  const { startSimulation, stopSimulation, resumeSimulation, pauseSimulation } =
-    useBuilding();
+  const {
+    startSimulation,
+    stopSimulation,
+    resumeSimulation,
+    pauseSimulation,
+    simulationStatus,
+  } = useBuilding();
   return (
     <div className={styles.lower_section}>
       <div className={styles.button_section2}>
@@ -25,13 +30,13 @@ function SimulationActions() {
         </button>
         <button className={styles.main_title_btn2} onClick={stopSimulation}>
           <a className={styles.navigation}>
-            <p className={styles.main_btn_text}>Stop information</p>
+            <p className={styles.main_btn_text}>Stop simulation</p>
           </a>
         </button>
       </div>
       <div className={styles.ststus_show}>
         <h3 className={styles.main_caption}>Simulation status:</h3>
-        <p>In Process</p>
+        <p>{simulationStatus}</p>
       </div>
     </div>
   );
