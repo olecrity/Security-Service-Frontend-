@@ -9,26 +9,47 @@ function SimulationActions() {
     resumeSimulation,
     pauseSimulation,
     simulationStatus,
+    isFinalized,
   } = useBuilding();
   return (
     <div className={styles.lower_section}>
       <div className={styles.button_section2}>
-        <button className={styles.main_title_btn2} onClick={startSimulation}>
+        <button
+          className={
+            isFinalized ? styles.main_title_btn2 : styles["btn-inactive"]
+          }
+          onClick={isFinalized ? startSimulation : () => {}}
+        >
           <a className={styles.navigation}>
             <p className={styles.main_btn_text}>Start simulation</p>
           </a>
         </button>
-        <button className={styles.main_title_btn2} onClick={pauseSimulation}>
+        <button
+          className={
+            isFinalized ? styles.main_title_btn2 : styles["btn-inactive"]
+          }
+          onClick={isFinalized ? pauseSimulation : () => {}}
+        >
           <a className={styles.navigation}>
             <p className={styles.main_btn_text}>Pause simulation</p>
           </a>
         </button>
-        <button className={styles.main_title_btn2} onClick={resumeSimulation}>
+        <button
+          className={
+            isFinalized ? styles.main_title_btn2 : styles["btn-inactive"]
+          }
+          onClick={isFinalized ? resumeSimulation : () => {}}
+        >
           <a className={styles.navigation}>
             <p className={styles.main_btn_text}>Resume simulation</p>
           </a>
         </button>
-        <button className={styles.main_title_btn2} onClick={stopSimulation}>
+        <button
+          className={
+            isFinalized ? styles.main_title_btn2 : styles["btn-inactive"]
+          }
+          onClick={isFinalized ? stopSimulation : () => {}}
+        >
           <a className={styles.navigation}>
             <p className={styles.main_btn_text}>Stop simulation</p>
           </a>

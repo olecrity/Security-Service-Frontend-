@@ -13,8 +13,11 @@
 
   .btn-deactivate:hover {
     width: 104px;
-      height: 40px;
-      font-size: 14px;
-      margin: 0;
+    height: 40px;
+    font-size: 14px;
+    margin: 0;
+  }
+  .active {
+    background-color: lightgreen;
   }
 }
