@@ -351,7 +351,7 @@ function BuildingProvider({ children }) {
     );
     const data = await res.json();
     console.log(data);
-    connectWebSocket(data, true);
+    connectWebSocket(data, false);
     dispatch({ type: "simulation/start", payload: data.topic });
   }
   async function stopSimulation() {
@@ -419,7 +419,7 @@ function BuildingProvider({ children }) {
       }
     );
     const data = await res.json();
-    connectWebSocket(data, false);
+    connectWebSocket(data, true);
     dispatch({ type: "simulation/start", payload: data.topic });
   }
   async function stopReplay() {
@@ -449,7 +449,7 @@ function BuildingProvider({ children }) {
   }
   
   function connectWebSocket(data, replay) {
-    const socket = new SockJS("https://localhost:8080/ws");
+    const socket = new SockJS("http://localhost:8080/ws");
     stompClient = Stomp.over(socket);
   
     socket.onopen = function () {
@@ -482,7 +482,7 @@ function BuildingProvider({ children }) {
                 sensorId = parsedMessage.sensorId;
 
                 console.log( parseInt(sensorId, 10));
-                if (!replay) {
+                if (replay) {
                   if (shouldStop) {
                     break; // Припиняємо цикл під час затримки
                   }
