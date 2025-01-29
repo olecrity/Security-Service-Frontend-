@@ -3,7 +3,7 @@ import { useAuth } from "./AuthContext";
 import SockJS from "sockjs-client";
 import { Stomp } from "@stomp/stompjs";
 
-const BASE_URL = "http://localhost:9000";
+const BASE_URL = "http://localhost:8080";
 const DB_BASE_URL = "http://localhost:8080";
 
 let webSocket = null;
@@ -366,6 +366,7 @@ function BuildingProvider({ children }) {
     );
     const data = await res.json();
     console.log(data);
+    console.log("simulation is possibly stopped");
     disconnectWebSocket();
     dispatch({ type: "simulation/stop" });
   }
@@ -472,7 +473,7 @@ function BuildingProvider({ children }) {
   
           for (const parsedMessage of parsedMessages) {
             if (shouldStop) {
-              break; // Припиняємо цикл, якщо потрібна зупинка
+              break; 
             }
             if (parsedMessage) {
               let sensorId = null;
@@ -484,7 +485,7 @@ function BuildingProvider({ children }) {
                 console.log( parseInt(sensorId, 10));
                 if (replay) {
                   if (shouldStop) {
-                    break; // Припиняємо цикл під час затримки
+                    break;
                   }
                   await sleep(5000);
                 }
